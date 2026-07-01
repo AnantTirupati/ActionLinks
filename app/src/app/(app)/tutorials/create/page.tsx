@@ -4,10 +4,32 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Stepper } from "@/components/ui/stepper";
-import { sourceOptions } from "@/lib/mock-data";
 import { ArrowLeft, Play, Upload, Globe, Check } from "lucide-react";
 import type { SourceType } from "@/types";
 import { createTutorial } from "@/features/tutorials/actions";
+
+const sourceOptions: { type: SourceType; icon: string; title: string; description: string; placeholder?: string }[] = [
+  {
+    type: "youtube",
+    icon: "PlaySquare",
+    title: "Paste YouTube URL",
+    description: "Extract steps directly from a public video.",
+    placeholder: "https://youtube.com/watch?v=...",
+  },
+  {
+    type: "upload",
+    icon: "Upload",
+    title: "Upload Recording",
+    description: "Drag and drop MP4 or WebM files.",
+  },
+  {
+    type: "website",
+    icon: "Globe",
+    title: "Paste Website URL",
+    description: "Parse documentation or web guides.",
+    placeholder: "https://docs.example.com...",
+  },
+];
 
 const iconMap = {
   youtube: Play,

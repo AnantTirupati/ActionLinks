@@ -10,6 +10,10 @@ export class Player {
     return this.activeElement;
   }
 
+  public clearActiveElement() {
+    this.activeElement = null;
+  }
+
   public async executeStep(
     step: Step,
     onStatusChange: (status: "FINDING_ELEMENT" | "HIGHLIGHTING" | "ERROR") => void

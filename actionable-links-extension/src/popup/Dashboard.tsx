@@ -38,8 +38,8 @@ export function Dashboard() {
   };
 
   const filtered = tutorials.filter(t => 
-    t.title.toLowerCase().includes(search.toLowerCase()) ||
-    t.description.toLowerCase().includes(search.toLowerCase())
+    (t.title || "").toLowerCase().includes(search.toLowerCase()) ||
+    (t.description || "").toLowerCase().includes(search.toLowerCase())
   );
 
   const initials = user?.full_name

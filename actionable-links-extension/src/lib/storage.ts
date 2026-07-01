@@ -19,6 +19,7 @@ export interface ProgressData {
 const KEYS = {
   SESSION: "actionlinks_session",
   PROGRESS_PREFIX: "actionlinks_progress_",
+  ACTIVE_TUTORIAL: "actionlinks_active_tutorial",
 };
 
 export const storage = {
@@ -51,5 +52,18 @@ export const storage = {
     const key = `${KEYS.PROGRESS_PREFIX}${tutorialId}`;
     const data = await browser.storage.local.get(key);
     return (data[key] as ProgressData) || null;
+  },
+
+  saveActiveTutorialId: async (tutorialId: string): Promise<void> => {
+    await browser.storage.local.set({ [KEYS.ACTIVE_TUTORIAL]: tutorialId });
+  },
+
+  loadActiveTutorialId: async (): Promise<string | null> => {
+    const data = await browser.storage.local.get(KEYS.ACTIVE_TUTORIAL);
+    return (data[KEYS.ACTIVE_TUTORIAL] as string) || null;
+  },
+
+  clearActiveTutorialId: async (): Promise<void> => {
+    await browser.storage.local.remove(KEYS.ACTIVE_TUTORIAL);
   },
 };

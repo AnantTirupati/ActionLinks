@@ -5,11 +5,37 @@ import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Stepper } from "@/components/ui/stepper";
 import { ProcessingChecklist } from "@/components/ui/processing-checklist";
-import { processingSteps } from "@/lib/mock-data";
 import { X, Timer, AlertCircle } from "lucide-react";
 import type { ProcessingStep } from "@/types";
 import { generateAITutorial } from "@/features/tutorials/actions";
 import { logger } from "@/lib/logger";
+
+const processingSteps: ProcessingStep[] = [
+  {
+    id: "proc-1",
+    title: "Source fetched successfully",
+    description: "Video downloaded and validated.",
+    status: "done",
+  },
+  {
+    id: "proc-2",
+    title: "Extracting audio and frames",
+    description: "Keyframes and transcript generated.",
+    status: "done",
+  },
+  {
+    id: "proc-3",
+    title: "Understanding UI elements and actions",
+    description: "Mapping clicks and text inputs to semantic actions.",
+    status: "active",
+  },
+  {
+    id: "proc-4",
+    title: "Generating step-by-step workflow",
+    description: "Synthesizing final tutorial steps.",
+    status: "pending",
+  },
+];
 
 function AIProcessingContent() {
   const searchParams = useSearchParams();

@@ -28,8 +28,14 @@
         "http://*/*",
         "https://*/*"
       ],
-      "js": ["content.js"],
+      "js": ["content-loader.js"],
       "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["content.js", "assets/*"],
+      "matches": ["http://*/*", "https://*/*"]
     }
   ]
 }

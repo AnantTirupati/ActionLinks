@@ -15,6 +15,9 @@ export const StepSchema = z.object({
     "navigation",
     "wait",
     "custom_message",
+    "navigate",
+    "code_highlight",
+    "select",
   ]).default("click"),
   selector: z.string().default(""),
   url: z.string().default(""),
@@ -35,6 +38,7 @@ export const TutorialSchema = z.object({
   status: z.string().default("draft"),
   visibility: z.enum(["public", "private"]).default("public"),
   estimatedTime: z.number().int().nonnegative().default(5),
+  stepsCount: z.number().int().nonnegative().optional(),
   steps: z.array(StepSchema).default([]),
 });
 

@@ -52,5 +52,31 @@ export async function GET(request: Request) {
     });
   }
 
-  return jsonResponse(true, filtered, 200, request);
+  // Map tutorials to match our schema fields (including stepsCount and estimatedTime)
+  const mapped = await Promise.all(
+    filtered.map(async (t) => {
+      const { count } = await supabase
+        .from("tutorial_steps")
+        .select("*", { count: "exact", head: true })
+        .eq("tutorial_id", t.id);
+
+      return {
+        id: t.id,
+        title: t.title,
+        description: t.description || "",
+        domain: t.domain || "",
+        urlPattern: t.url_pattern || "",
+        status: t.status,
+        visibility: t.visibility,
+        source_type: t.source_type,
+        source_url: t.source_url,
+        thumbnail_url: t.thumbnail_url,
+        estimatedTime: (count || 0) * 2,
+        stepsCount: count || 0,
+        steps: [],
+      };
+    })
+  );
+
+  return jsonResponse(true, mapped, 200, request);
 }

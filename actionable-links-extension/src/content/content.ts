@@ -7,6 +7,8 @@ import { messageReceiver } from "../messaging/receiver";
 import { messageSender } from "../messaging/sender";
 import { MESSAGES } from "../constants";
 
+import { storage } from "../lib/storage";
+
 let rootContainer: HTMLElement | null = null;
 let shadowRoot: ShadowRoot | null = null;
 
@@ -44,8 +46,25 @@ function OverlayMountWrapper() {
 
   useEffect(() => {
     async function checkTutorials() {
-      const hostname = window.location.hostname;
       try {
+        // Auto-resume active tutorial if present in storage
+        const activeId = await storage.loadActiveTutorialId();
+        if (activeId) {
+          const res = await messageSender.sendToBackground(MESSAGES.START_TUTORIAL, {
+            tutorialId: activeId
+          } as any);
+          if (res && (res as any).tutorial) {
+            injectOverlay();
+            playerController.start(
+              (res as any).tutorial,
+              (res as any).currentStep,
+              (res as any).completedSteps
+            );
+            return;
+          }
+        }
+
+        const hostname = window.location.hostname;
         const response = await messageSender.sendToBackground(MESSAGES.GET_ACTIVE_TAB, {
           domain: hostname
         } as any);
@@ -57,16 +76,29 @@ function OverlayMountWrapper() {
           }
         }
       } catch (e) {
-        console.error(e);
+        console.error("Failed to check active tutorial state", e);
       }
     }
     checkTutorials();
   }, []);
 
-  const handleStart = () => {
+  const handleStart = async () => {
     if (tutorials.length > 0) {
       setShowBanner(false);
-      playerController.start(tutorials[0]);
+      try {
+        const res = await messageSender.sendToBackground(MESSAGES.START_TUTORIAL, {
+          tutorialId: tutorials[0].id
+        } as any);
+        if (res && (res as any).tutorial) {
+          playerController.start(
+            (res as any).tutorial,
+            (res as any).currentStep,
+            (res as any).completedSteps
+          );
+        }
+      } catch (err) {
+        console.error("Failed to start tutorial from toast:", err);
+      }
     }
   };
 

@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
@@ -10,12 +9,7 @@ import { StatCard } from "@/components/ui/stat-card";
 import { ProgressBar } from "@/components/ui/progress-bar";
 import { TutorialCard } from "@/components/ui/tutorial-card";
 import { ActivityFeed } from "@/components/ui/activity-feed";
-import {
-  continueLearningTutorial as defaultContinue,
-  recentTutorials as defaultRecents,
-  activityFeedItems,
-} from "@/lib/mock-data";
-import { Play, ArrowRight, Video } from "lucide-react";
+import { Play, ArrowRight, Video, BookOpen, Plus } from "lucide-react";
 import { getTutorials } from "@/features/tutorials/actions";
 import { mapDatabaseTutorial } from "@/lib/tutorials";
 
@@ -68,16 +62,16 @@ export default function DashboardPage() {
     });
   }, [dbTutorials]);
 
-  // Load progress details and activities in realtime
+  // Load progress details and activities from database
   useEffect(() => {
     async function loadProgressStats() {
       if (!user) return;
-      
+
       const { data: progressList } = await supabase
         .from("tutorial_progress")
         .select("*")
         .eq("user_id", user.id);
-      
+
       if (progressList) {
         setStartedCount(progressList.length);
         const completed = progressList.filter((p) => p.completed_at !== null).length;
@@ -105,7 +99,7 @@ export default function DashboardPage() {
           }
         }
 
-        // Generate activities
+        // Generate activities from progress records
         const sortedProgress = [...progressList]
           .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
           .slice(0, 5);
@@ -120,11 +114,11 @@ export default function DashboardPage() {
             type: isFinished ? "complete" : "progress",
             user: {
               name: name,
-              avatar: "",
+              avatar: user?.user_metadata?.avatar_url || "",
             },
             message: isFinished
-              ? `completed the tutorial: "${title}"`
-              : `advanced to Step ${p.current_step} of "${title}"`,
+              ? `Completed "${title}"`
+              : `Step ${p.current_step} of "${title}"`,
             timestamp: new Date(p.updated_at).toLocaleDateString(undefined, {
               month: "short",
               day: "numeric",
@@ -137,7 +131,7 @@ export default function DashboardPage() {
       }
     }
 
-    if (user && tutorials.length > 0) {
+    if (user) {
       loadProgressStats();
     }
   }, [user, tutorials, name]);
@@ -167,7 +161,6 @@ export default function DashboardPage() {
     ];
   }, [activeCount, startedCount, completedCount]);
 
-  const latestTutorial = tutorials[0] || null;
   const recentList = tutorials.slice(0, 3);
 
   if (loading) {
@@ -192,10 +185,6 @@ export default function DashboardPage() {
       </AppShell>
     );
   }
-
-  const continueTutorialDisplay = continueTutorial || latestTutorial || defaultContinue;
-  const recentDisplayList = recentList.length > 0 ? recentList : defaultRecents;
-  const activityDisplayItems = activities.length > 0 ? activities : activityFeedItems;
 
   return (
     <AppShell breadcrumbs={breadcrumbs}>
@@ -229,48 +218,62 @@ export default function DashboardPage() {
         {/* Left Column: Learning & Recent */}
         <div className="xl:col-span-2 flex flex-col gap-8">
           {/* Continue Learning */}
-          <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col md:flex-row gap-6 relative overflow-hidden shadow-sm">
-            {/* Thumbnail */}
-            <div className="relative w-full md:w-48 h-32 bg-surface-container-low rounded-lg overflow-hidden shrink-0 group">
-              {continueTutorialDisplay.image && (
-                <Image
-                  src={continueTutorialDisplay.image}
-                  alt={continueTutorialDisplay.title}
-                  fill
-                  className="object-cover"
-                />
-              )}
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <button className="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shadow">
-                  <Play className="w-5 h-5 fill-on-primary" />
-                </button>
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className="flex-grow flex flex-col justify-between py-1">
-              <div>
-                <span className="text-label-sm text-primary uppercase font-bold tracking-wider">
-                  Continue Learning
-                </span>
-                <h3 className="text-headline-md font-semibold text-on-surface mt-1">
-                  {continueTutorialDisplay.title}
-                </h3>
-                <p className="text-body-md text-on-surface-variant mt-1">
-                  {continueTutorialDisplay.description}
-                </p>
-              </div>
-
-              {/* Progress */}
-              <div className="mt-4">
-                <div className="flex justify-between items-center text-label-sm text-on-surface-variant mb-2">
-                  <span>Progress: {continueTutorialDisplay.progress || 0}%</span>
-                  <span>{continueTutorialDisplay.duration}</span>
+          {continueTutorial ? (
+            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col md:flex-row gap-6 relative overflow-hidden shadow-sm">
+              {/* Thumbnail */}
+              <div className="relative w-full md:w-48 h-32 bg-surface-container-low rounded-lg overflow-hidden shrink-0 group flex items-center justify-center">
+                <BookOpen className="w-12 h-12 text-outline-variant" />
+                <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button className="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shadow">
+                    <Play className="w-5 h-5 fill-on-primary" />
+                  </button>
                 </div>
-                <ProgressBar value={continueTutorialDisplay.progress || 0} />
+              </div>
+
+              {/* Info */}
+              <div className="flex-grow flex flex-col justify-between py-1">
+                <div>
+                  <span className="text-label-sm text-primary uppercase font-bold tracking-wider">
+                    Continue Learning
+                  </span>
+                  <h3 className="text-headline-md font-semibold text-on-surface mt-1">
+                    {continueTutorial.title}
+                  </h3>
+                  <p className="text-body-md text-on-surface-variant mt-1">
+                    {continueTutorial.description}
+                  </p>
+                </div>
+
+                {/* Progress */}
+                <div className="mt-4">
+                  <div className="flex justify-between items-center text-label-sm text-on-surface-variant mb-2">
+                    <span>Progress: {continueTutorial.progress || 0}%</span>
+                    <span>{continueTutorial.duration}</span>
+                  </div>
+                  <ProgressBar value={continueTutorial.progress || 0} />
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-center shadow-sm">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                <Video className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-headline-md font-semibold text-on-surface">
+                No tutorials in progress
+              </h3>
+              <p className="text-body-md text-on-surface-variant mt-2 max-w-md">
+                Create your first tutorial or import one from YouTube to get started with interactive learning.
+              </p>
+              <Link
+                href="/tutorials/create"
+                className="mt-4 inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-on-primary rounded-lg font-semibold text-label-md hover:bg-primary/90 transition-colors"
+              >
+                <Plus className="w-4 h-4" />
+                Create Tutorial
+              </Link>
+            </div>
+          )}
 
           {/* Recent Tutorials */}
           <div>
@@ -287,17 +290,46 @@ export default function DashboardPage() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {recentDisplayList.map((tutorial) => (
-                <TutorialCard key={tutorial.id} tutorial={tutorial} />
-              ))}
-            </div>
+            {recentList.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {recentList.map((tutorial) => (
+                  <TutorialCard key={tutorial.id} tutorial={tutorial} />
+                ))}
+              </div>
+            ) : (
+              <div className="bg-surface-container-lowest border border-outline-variant border-dashed rounded-xl p-8 flex flex-col items-center justify-center text-center">
+                <BookOpen className="w-10 h-10 text-outline-variant mb-3" />
+                <p className="text-body-lg text-on-surface-variant font-medium">
+                  No tutorials yet
+                </p>
+                <p className="text-body-md text-on-surface-variant/70 mt-1">
+                  Your created and imported tutorials will appear here.
+                </p>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Right Column: Activity Feed */}
         <div className="h-fit">
-          <ActivityFeed items={activityDisplayItems} />
+          {activities.length > 0 ? (
+            <ActivityFeed items={activities} />
+          ) : (
+            <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+              <h3 className="text-headline-sm font-bold text-on-surface mb-4">Activity Feed</h3>
+              <div className="flex flex-col items-center justify-center py-8 text-center">
+                <div className="w-12 h-12 rounded-full bg-outline-variant/10 flex items-center justify-center mb-3">
+                  <Play className="w-5 h-5 text-outline-variant" />
+                </div>
+                <p className="text-body-md text-on-surface-variant">
+                  No activity yet
+                </p>
+                <p className="text-body-sm text-on-surface-variant/70 mt-1">
+                  Start a tutorial to see your progress here.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </AppShell>

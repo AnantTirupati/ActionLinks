@@ -1,6 +1,8 @@
 import { Step, Tutorial } from "@actionlinks/shared";
 import { Player } from "./Player";
 import { PlayerState, PlayerStatus } from "./State";
+import { storage } from "../lib/storage";
+import { MESSAGES } from "../constants";
 
 export class Controller {
   private player: Player;
@@ -69,7 +71,27 @@ export class Controller {
       completedSteps: [],
       paused: false,
     };
+    storage.clearActiveTutorialId();
     this.notify();
+  }
+
+  private async saveCurrentProgress() {
+    if (!this.tutorial) return;
+    const currentStep = this.state.currentStepIndex + 1;
+    const completedSteps = this.state.completedSteps;
+    
+    try {
+      await chrome.runtime.sendMessage({
+        type: MESSAGES.SYNC_PROGRESS,
+        payload: {
+          tutorialId: this.tutorial.id,
+          currentStep,
+          completedSteps,
+        },
+      });
+    } catch (err) {
+      console.error("Failed to trigger progress sync from controller:", err);
+    }
   }
 
   public async nextStep() {
@@ -82,6 +104,7 @@ export class Controller {
 
     this.state.currentStepIndex += 1;
     this.updateStatus("LOADING");
+    this.saveCurrentProgress();
     await this.playActiveStep();
   }
 
@@ -90,6 +113,7 @@ export class Controller {
 
     this.state.currentStepIndex -= 1;
     this.updateStatus("LOADING");
+    this.saveCurrentProgress();
     await this.playActiveStep();
   }
 
@@ -104,6 +128,7 @@ export class Controller {
       this.state.completedSteps = [...completed, stepNumber];
     }
     
+    this.saveCurrentProgress();
     this.notify();
   }
 
@@ -127,6 +152,12 @@ export class Controller {
     const step = this.getActiveStep();
     if (!step) {
       this.updateStatus("ERROR", "Step index out of bounds.");
+      return;
+    }
+
+    if (!step.selector) {
+      this.player.clearActiveElement();
+      this.updateStatus("WAITING_USER_ACTION");
       return;
     }
 

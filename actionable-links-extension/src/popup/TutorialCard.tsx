@@ -29,7 +29,7 @@ export function TutorialCard({ tutorial, onPlay }: TutorialCardProps) {
           </span>
           <span className="flex items-center gap-1">
             <BookOpen className="w-3 h-3 text-zinc-600" />
-            {tutorial.steps.length} steps
+            {(tutorial.steps || []).length} steps
           </span>
         </div>
 

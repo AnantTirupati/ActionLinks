@@ -67,7 +67,7 @@ export function Sidebar({ className }: SidebarProps) {
               Action Links
             </span>
             <span className="text-label-sm text-on-surface-variant">
-              Enterprise Plan
+              Free Plan
             </span>
           </div>
         </div>

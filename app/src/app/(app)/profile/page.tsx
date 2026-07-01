@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { AppShell } from "@/components/layout/app-shell";
 import { ProgressBar } from "@/components/ui/progress-bar";
-import { apiKeys as initialApiKeys, notificationPreferences as initialPrefs } from "@/lib/mock-data";
+
 import { createClient } from "@/lib/supabase/client";
 import { User as SupabaseUser } from "@supabase/supabase-js";
 import {
@@ -23,8 +23,12 @@ import {
 
 export default function ProfileSettingsPage() {
   const supabase = createClient();
-  const [keys, setKeys] = useState(initialApiKeys);
-  const [prefs, setPrefs] = useState(initialPrefs);
+  const [keys, setKeys] = useState<{ id: string; name: string; token: string; createdAt: string }[]>([]);
+  const [prefs, setPrefs] = useState([
+    { id: "notif-1", title: "Email Alerts", description: "Critical account and security updates.", enabled: true },
+    { id: "notif-2", title: "Browser Notifications", description: "Real-time activity alerts in app.", enabled: false },
+    { id: "notif-3", title: "Marketing Updates", description: "New features, tips, and promotions.", enabled: false },
+  ]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
@@ -351,33 +355,15 @@ export default function ProfileSettingsPage() {
               </span>
               <div className="flex items-baseline gap-2 mt-1">
                 <span className="text-[28px] font-black text-on-surface leading-none">
-                  Premium SaaS
+                  Free
                 </span>
                 <span className="bg-secondary-container text-primary text-label-sm px-2 py-0.5 rounded-full border border-primary/20 font-bold">
                   Active
                 </span>
               </div>
               <p className="text-body-md text-on-surface-variant mt-2">
-                Billed annually. Next invoice on Dec 1, 2026.
+                Upgrade to unlock unlimited tutorials and team features.
               </p>
-            </div>
-
-            {/* Billing limit details */}
-            <div className="flex flex-col gap-4 mt-2">
-              <div className="flex flex-col gap-1.5">
-                <div className="flex justify-between text-body-md text-on-surface-variant">
-                  <span>API Requests</span>
-                  <span className="font-semibold text-on-surface">45k / 100k</span>
-                </div>
-                <ProgressBar value={45} />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <div className="flex justify-between text-body-md text-on-surface-variant">
-                  <span>Storage Used</span>
-                  <span className="font-semibold text-on-surface">12GB / 50GB</span>
-                </div>
-                <ProgressBar value={24} />
-              </div>
             </div>
 
             <button className="w-full mt-2 bg-surface border border-outline-variant text-on-surface py-2 rounded-md text-label-md hover:bg-surface-container-low transition-colors shadow-sm font-semibold">

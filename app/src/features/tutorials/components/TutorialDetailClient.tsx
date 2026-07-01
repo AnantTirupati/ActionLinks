@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { AppShell } from "@/components/layout/app-shell";
 import { ProgressBar } from "@/components/ui/progress-bar";
-import { tutorialComments, relatedTutorials } from "@/lib/mock-data";
+
 import { User } from "@supabase/supabase-js";
 import {
   ArrowLeft,
@@ -293,51 +293,9 @@ export function TutorialDetailClient({ dbTutorial, user }: TutorialDetailClientP
 
             {/* Comments List */}
             <div className="flex flex-col gap-6">
-              {tutorialComments.map((comment) => (
-                <div key={comment.id} className="flex gap-3 items-start">
-                  <div className="w-10 h-10 rounded-full overflow-hidden shrink-0 border border-outline-variant relative">
-                    {comment.author.avatar && (
-                      <Image
-                        src={comment.author.avatar}
-                        alt={comment.author.name}
-                        fill
-                        className="object-cover"
-                      />
-                    )}
-                  </div>
-                  <div className="flex-grow">
-                    <div className="flex items-center gap-2">
-                      <span className="font-semibold text-label-md text-on-surface">
-                        {comment.author.name}
-                      </span>
-                      <span className="text-[12px] text-on-surface-variant">
-                        {comment.timestamp}
-                      </span>
-                    </div>
-                    <p className="text-body-md text-on-surface mt-1.5 leading-relaxed">
-                      {comment.content}
-                    </p>
-                    <div className="flex items-center gap-4 mt-3">
-                      <button
-                        onClick={() => handleLike(comment.id)}
-                        className={`flex items-center gap-1.5 text-label-sm transition-colors ${
-                          liked[comment.id]
-                            ? "text-primary font-bold"
-                            : "text-on-surface-variant hover:text-primary"
-                        }`}
-                      >
-                        <ThumbsUp className="w-4 h-4" />
-                        <span>
-                          {comment.likes + (likes[comment.id] || 0)}
-                        </span>
-                      </button>
-                      <button className="text-label-sm text-on-surface-variant hover:text-primary transition-colors">
-                        Reply
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
+              <div className="py-6 text-center">
+                <p className="text-body-md text-on-surface-variant">No comments yet. Be the first to share your thoughts!</p>
+              </div>
             </div>
           </div>
         </div>
@@ -456,31 +414,10 @@ export function TutorialDetailClient({ dbTutorial, user }: TutorialDetailClientP
             <h3 className="text-label-md font-bold text-on-surface mb-4">
               Related Guides
             </h3>
-            <div className="flex flex-col gap-4">
-              {relatedTutorials.map((item) => (
-                <Link
-                  key={item.id}
-                  href={`/tutorials/${item.id}`}
-                  className="flex gap-3 hover:opacity-90 group cursor-pointer"
-                >
-                  <div className="relative w-16 h-12 rounded bg-surface-container-low overflow-hidden shrink-0 border border-outline-variant">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="min-w-0 flex flex-col justify-center">
-                    <h4 className="text-label-sm text-on-surface group-hover:text-primary transition-colors font-semibold truncate leading-tight">
-                      {item.title}
-                    </h4>
-                    <span className="text-[11px] text-on-surface-variant mt-1">
-                      {item.duration}
-                    </span>
-                  </div>
-                </Link>
-              ))}
+            <div className="py-4 text-center">
+              <p className="text-body-sm text-on-surface-variant">
+                No related guides found yet.
+              </p>
             </div>
           </div>
         </div>
