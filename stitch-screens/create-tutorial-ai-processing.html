@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html class="h-full bg-background dark:bg-background" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Tutorial - AI Processing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#5c647a",
+                      "on-tertiary-fixed": "#0d1c2e",
+                      "surface-variant": "#e2e2e2",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#536176",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#f0f1f1",
+                      "error-container": "#ffdad6",
+                      "background": "#f9f9f9",
+                      "tertiary-fixed-dim": "#b9c7df",
+                      "surface": "#f9f9f9",
+                      "on-primary-fixed": "#0f0069",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "tertiary-fixed": "#d5e3fc",
+                      "surface-container-high": "#e8e8e8",
+                      "primary": "#3525cd",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#dae2fd",
+                      "surface-container": "#eeeeee",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "on-surface-variant": "#464555",
+                      "surface-container-low": "#f3f3f3",
+                      "primary-fixed": "#e2dfff",
+                      "outline": "#777587",
+                      "on-surface": "#1a1c1c",
+                      "surface-tint": "#4d44e3",
+                      "on-error": "#ffffff",
+                      "primary-container": "#4f46e5",
+                      "on-tertiary-fixed-variant": "#3a485b",
+                      "on-tertiary-container": "#cedcf4",
+                      "inverse-surface": "#2f3131",
+                      "surface-container-highest": "#e2e2e2",
+                      "secondary-container": "#dae2fd",
+                      "error": "#ba1a1a",
+                      "tertiary": "#3b495d",
+                      "surface-dim": "#dadada",
+                      "on-primary-container": "#dad7ff",
+                      "outline-variant": "#c7c4d8",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#c3c0ff",
+                      "secondary": "#565e74",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "surface-bright": "#f9f9f9",
+                      "on-secondary-fixed": "#131b2e",
+                      "on-background": "#1a1c1c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "xl": "32px",
+                      "margin": "32px",
+                      "gutter": "24px",
+                      "max-width": "1280px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display": [
+                              "36px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.015em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .animate-pulse-subtle {
+            animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-subtle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .progress-ring {
+            transition: stroke-dashoffset 0.5s ease-in-out;
+        }
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.2) 20%,
+                rgba(255, 255, 255, 0.5) 60%,
+                rgba(255, 255, 255, 0)
+            );
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col font-body-md text-on-surface bg-background">
+<!-- Top Navigation (Shell suppressed due to focused transactional flow, but keeping a minimal header for context) -->
+<header class="w-full h-16 flex items-center justify-between px-gutter bg-surface border-b border-outline-variant z-50">
+<div class="flex items-center gap-sm">
+<button aria-label="Cancel" class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-sm rounded-full hover:bg-surface-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">close</span>
+</button>
+<span class="font-headline-md text-headline-md font-bold text-primary">Action Links</span>
+</div>
+<div class="font-label-md text-label-md text-on-surface-variant">
+            Create Tutorial
+        </div>
+</header>
+<main class="flex-1 flex flex-col items-center justify-start pt-xl pb-margin px-gutter max-w-max-width w-full mx-auto">
+<!-- Stepper -->
+<div class="w-full max-w-2xl mb-xl">
+<div class="flex items-center justify-between">
+<!-- Step 1: Source (Completed) -->
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary z-10">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary mt-sm">Source</span>
+<div class="absolute top-4 left-1/2 w-full h-0.5 bg-primary -z-0"></div>
+</div>
+<!-- Step 2: Processing (Active) -->
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary z-10 ring-4 ring-primary-container/20 animate-pulse-subtle">
+<span class="font-label-md text-label-md">2</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary mt-sm font-bold">Processing</span>
+<div class="absolute top-4 left-1/2 w-full h-0.5 bg-surface-variant -z-0"></div>
+</div>
+<!-- Step 3: Edit (Pending) -->
+<div class="flex flex-col items-center flex-1 relative">
+<div class="w-8 h-8 rounded-full bg-surface-container border-2 border-outline-variant flex items-center justify-center text-outline z-10">
+<span class="font-label-md text-label-md">3</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline mt-sm">Edit</span>
+</div>
+</div>
+</div>
+<!-- Main Content Canvas -->
+<div class="w-full max-w-3xl bg-surface rounded-lg border border-outline-variant p-lg shadow-sm flex flex-col items-center mt-md relative overflow-hidden">
+<!-- Background Accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-surface-container">
+<div class="h-full bg-primary progress-ring" style="width: 65%;"></div>
+</div>
+<div class="text-center mb-xl mt-md">
+<h1 class="font-display text-display text-on-surface mb-sm">AI is analyzing your source...</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">We're extracting key elements to build your interactive tutorial.</p>
+</div>
+<!-- Visual Indicator Area -->
+<div class="relative w-48 h-48 mb-xl flex items-center justify-center">
+<!-- Circular Progress -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<!-- Background Circle -->
+<circle class="text-surface-variant" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-width="6"></circle>
+<!-- Progress Circle -->
+<circle class="text-primary progress-ring" cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-dasharray="283" stroke-dashoffset="99" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<!-- Center Content -->
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="font-display text-display text-primary font-bold">65%</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-xs">Completed</span>
+</div>
+<!-- Orbiting Nodes (Decorative) -->
+<div class="absolute w-full h-full animate-spin" style="animation-duration: 8s; animation-timing-function: linear;">
+<div class="absolute top-0 left-1/2 -ml-2 -mt-2 w-4 h-4 bg-primary-container rounded-full border-2 border-surface shadow-sm"></div>
+</div>
+</div>
+<!-- Processing Timeline / Checklist -->
+<div class="w-full max-w-lg bg-surface-container-lowest border border-outline-variant rounded-lg p-md mb-xl flex flex-col gap-md">
+<!-- Item 1: Done -->
+<div class="flex items-start gap-md">
+<div class="mt-1 text-primary flex-shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Source fetched successfully</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Video downloaded and validated.</div>
+</div>
+</div>
+<!-- Item 2: Done -->
+<div class="flex items-start gap-md">
+<div class="mt-1 text-primary flex-shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Extracting audio and frames</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Keyframes and transcript generated.</div>
+</div>
+</div>
+<!-- Item 3: Active -->
+<div class="flex items-start gap-md p-sm -mx-sm rounded-md bg-secondary-container/30 border border-secondary-container/50 shimmer">
+<div class="mt-1 text-primary animate-spin flex-shrink-0">
+<span class="material-symbols-outlined">progress_activity</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-primary font-bold">Understanding UI elements and actions</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Mapping clicks and text inputs to semantic actions.</div>
+</div>
+</div>
+<!-- Item 4: Pending -->
+<div class="flex items-start gap-md opacity-50">
+<div class="mt-1 text-outline flex-shrink-0">
+<span class="material-symbols-outlined">radio_button_unchecked</span>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Generating step-by-step workflow</div>
+<div class="font-body-md text-body-md text-on-surface-variant">Synthesizing final tutorial steps.</div>
+</div>
+</div>
+</div>
+<!-- Footer info -->
+<div class="flex items-center gap-xs text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">timer</span>
+                Approximately 2 minutes remaining
+            </div>
+</div>
+<!-- Cancel Action (Secondary) -->
+<div class="mt-xl">
+<button class="px-lg py-2 rounded border border-outline bg-surface-container-lowest text-on-surface hover:bg-surface-container font-label-md text-label-md transition-colors">
+                Cancel Processing
+            </button>
+</div>
+</main>
+</body></html>

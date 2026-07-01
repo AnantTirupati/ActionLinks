@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Action Links - Learn by doing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-secondary-fixed-variant": "#3f465c",
+                    "background": "#f9f9f9",
+                    "tertiary-fixed-dim": "#b9c7df",
+                    "secondary-fixed": "#dae2fd",
+                    "tertiary-fixed": "#d5e3fc",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-container": "#dad7ff",
+                    "tertiary": "#3b495d",
+                    "surface": "#f9f9f9",
+                    "secondary-container": "#dae2fd",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eeeeee",
+                    "error": "#ba1a1a",
+                    "on-primary": "#ffffff",
+                    "surface-bright": "#f9f9f9",
+                    "surface-dim": "#dadada",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#5c647a",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "on-error": "#ffffff",
+                    "outline": "#777587",
+                    "on-tertiary-container": "#cedcf4",
+                    "on-tertiary-fixed-variant": "#3a485b",
+                    "primary-container": "#4f46e5",
+                    "tertiary-container": "#536176",
+                    "secondary-fixed-dim": "#bec6e0",
+                    "inverse-surface": "#2f3131",
+                    "inverse-primary": "#c3c0ff",
+                    "surface-container-low": "#f3f3f3",
+                    "surface-tint": "#4d44e3",
+                    "on-tertiary-fixed": "#0d1c2e",
+                    "on-surface": "#1a1c1c",
+                    "outline-variant": "#c7c4d8",
+                    "on-secondary-fixed": "#131b2e",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "secondary": "#565e74",
+                    "primary": "#3525cd",
+                    "on-primary-fixed": "#0f0069",
+                    "on-surface-variant": "#464555",
+                    "primary-fixed": "#e2dfff",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-background": "#1a1c1c",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-high": "#e8e8e8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin": "32px",
+                    "max-width": "1280px",
+                    "md": "16px",
+                    "sm": "8px",
+                    "gutter": "24px",
+                    "lg": "24px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "display": [
+                            "Inter"
+                    ],
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Inter"
+                    ],
+                    "headline-md": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "headline-lg-mobile": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "body-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.02em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.015em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "letterSpacing": "0em",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #FAFAFA;
+            color: #1a1c1c;
+        }
+        
+        /* Ambient subtle shadow for elevated components */
+        .ambient-shadow {
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+        
+        .hero-pattern {
+            background-image: radial-gradient(#E2E8F0 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md antialiased overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="sticky top-0 z-50 flex items-center justify-between px-gutter w-full h-16 bg-surface dark:bg-surface-container border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-lg">
+<a class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed" href="#">Action Links</a>
+<div class="hidden md:flex items-center gap-md">
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md cursor-pointer active:opacity-80" href="#features">Features</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md cursor-pointer active:opacity-80" href="#pricing">Pricing</a>
+<a class="text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-label-md text-label-md cursor-pointer active:opacity-80" href="#">Library</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<a class="hidden md:block font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="#">Log in</a>
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">Get Started</button>
+</div>
+</nav>
+<!-- Hero Section -->
+<section class="relative pt-32 pb-24 px-gutter flex flex-col items-center justify-center text-center max-w-max-width mx-auto">
+<div class="absolute inset-0 hero-pattern opacity-50 pointer-events-none -z-10"></div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant mb-8">
+<span class="w-2 h-2 rounded-full bg-primary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Action Links v2.0 is live</span>
+</div>
+<h1 class="font-display text-display text-on-surface max-w-4xl tracking-tight mb-6">
+            Learn software by doing, <br class="hidden md:block"/>not by watching.
+        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mb-10">
+            Convert any YouTube video or documentation into an interactive, step-by-step tutorial. Built for engineering precision and speed.
+        </p>
+<div class="flex flex-col sm:flex-row items-center gap-4">
+<button class="w-full sm:w-auto bg-primary-container text-on-primary font-label-md text-label-md px-6 py-3 rounded-lg hover:opacity-90 transition-opacity shadow-sm">
+                Get Started for Free
+            </button>
+<button class="w-full sm:w-auto bg-surface-container-lowest text-on-surface font-label-md text-label-md px-6 py-3 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+                Watch Demo
+            </button>
+</div>
+</section>
+<!-- Product Demo Area -->
+<section class="px-gutter pb-32 max-w-max-width mx-auto">
+<div class="rounded-xl border border-outline-variant bg-surface-container-lowest p-2 ambient-shadow relative overflow-hidden group">
+<div class="absolute top-4 left-4 flex gap-2 z-10">
+<div class="w-3 h-3 rounded-full bg-outline-variant"></div>
+<div class="w-3 h-3 rounded-full bg-outline-variant"></div>
+<div class="w-3 h-3 rounded-full bg-outline-variant"></div>
+</div>
+<img class="w-full h-auto rounded-lg object-cover bg-surface-container-low aspect-video border border-surface-container-highest" data-alt="A high-resolution mockup of a dark-mode code editor interface and an interactive tutorial overlay side-by-side. The interface is clean, minimal, and developer-focused, using sharp monospaced fonts and syntax highlighting. The lighting is crisp and even, simulating a professional software environment." src="/images/image_7.png"/>
+</div>
+</section>
+<!-- Features -->
+<section class="py-24 px-gutter bg-surface-container-lowest border-y border-outline-variant" id="features">
+<div class="max-w-max-width mx-auto">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-16 text-center">Core Capabilities</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Feature 1 -->
+<div class="p-lg rounded-xl border border-outline-variant bg-surface-container-lowest hover:border-outline transition-colors">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary-container text-2xl">memory</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">AI Understanding</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Our specialized models extract exact commands, code snippets, and UI locations from unstructured video content with near-perfect accuracy.
+                    </p>
+</div>
+<!-- Feature 2 -->
+<div class="p-lg rounded-xl border border-outline-variant bg-surface-container-lowest hover:border-outline transition-colors">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary-container text-2xl">extension</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Browser Extension</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Inject interactive tutorials directly into your workflow. The extension anchors to your active tabs, providing context-aware guidance.
+                    </p>
+</div>
+<!-- Feature 3 -->
+<div class="p-lg rounded-xl border border-outline-variant bg-surface-container-lowest hover:border-outline transition-colors">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-primary-container text-2xl">security</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-3">Enterprise Security</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        SSO integration, strict data residency controls, and SOC2 compliance out of the box. Your internal documentation remains private.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full py-xl px-gutter flex flex-col md:flex-row justify-between items-center max-w-max-width mx-auto border-t border-outline-variant dark:border-outline bg-surface-container-lowest dark:bg-surface-container-high">
+<div class="mb-6 md:mb-0">
+<span class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface-variant">Action Links</span>
+<p class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant mt-2">© 2024 Action Links Inc. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap gap-6 justify-center">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed underline cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed underline cursor-pointer" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed underline cursor-pointer" href="#">Security</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed underline cursor-pointer" href="#">Status</a>
+</div>
+</footer>
+</body></html>

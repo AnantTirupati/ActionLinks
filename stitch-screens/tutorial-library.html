@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Action Links - Tutorial Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "background": "#f9f9f9",
+                        "tertiary-fixed-dim": "#b9c7df",
+                        "secondary-fixed": "#dae2fd",
+                        "tertiary-fixed": "#d5e3fc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#dad7ff",
+                        "tertiary": "#3b495d",
+                        "surface": "#f9f9f9",
+                        "secondary-container": "#dae2fd",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eeeeee",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "surface-dim": "#dadada",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#5c647a",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-error": "#ffffff",
+                        "outline": "#777587",
+                        "on-tertiary-container": "#cedcf4",
+                        "on-tertiary-fixed-variant": "#3a485b",
+                        "primary-container": "#4f46e5",
+                        "tertiary-container": "#536176",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "inverse-surface": "#2f3131",
+                        "inverse-primary": "#c3c0ff",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-tint": "#4d44e3",
+                        "on-tertiary-fixed": "#0d1c2e",
+                        "on-surface": "#1a1c1c",
+                        "outline-variant": "#c7c4d8",
+                        "on-secondary-fixed": "#131b2e",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "secondary": "#565e74",
+                        "primary": "#3525cd",
+                        "on-primary-fixed": "#0f0069",
+                        "on-surface-variant": "#464555",
+                        "primary-fixed": "#e2dfff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e8e8e8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "max-width": "1280px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "lg": "24px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #f9f9f9; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .icon-fill { font-variation-settings: 'FILL' 1; }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen flex overflow-hidden">
+<!-- SideNavBar (from JSON) -->
+<nav aria-label="Sidebar" class="hidden md:flex flex-col bg-surface dark:bg-surface-container-low docked left-0 h-full w-64 border-r border-outline-variant dark:border-outline flat no shadows fixed left-0 top-0 h-full w-64 flex flex-col p-md z-40 transition-transform duration-300 ease-in-out">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-xl pl-2">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary icon-fill" style="font-size: 20px;">link</span>
+</div>
+<div class="overflow-hidden">
+<h1 class="font-headline-md text-headline-md font-black text-primary dark:text-primary-fixed truncate">Action Links</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Enterprise Plan</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto space-y-1">
+<p class="font-label-sm text-label-sm text-outline px-4 mb-2 uppercase tracking-wider">Menu</p>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors text-[20px]">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<!-- ACTIVE STATE -->
+<a class="flex items-center gap-3 px-4 py-2 bg-secondary-container dark:bg-secondary-fixed-dim text-on-secondary-container dark:text-on-secondary-fixed rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined icon-fill text-[20px]">video_library</span>
+<span class="font-label-md text-label-md">My Tutorials</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors text-[20px]">group</span>
+<span class="font-label-md text-label-md">Team</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors text-[20px]">terminal</span>
+<span class="font-label-md text-label-md">API Keys</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors text-[20px]">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</div>
+<!-- Footer / CTA -->
+<div class="mt-auto pt-lg border-t border-outline-variant space-y-4">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-2 px-4 rounded-lg hover:opacity-90 transition-opacity">
+                Upgrade Now
+            </button>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors text-[20px]">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-high dark:hover:bg-surface-container-highest rounded-lg hover:bg-surface-container-high dark:hover:bg-surface-container-highest transition-all cursor-pointer active:scale-95 group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors text-[20px]">logout</span>
+<span class="font-label-md text-label-md">Log Out</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col md:ml-64 w-full h-full relative">
+<!-- TopNavBar (from JSON) -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-gutter w-full h-16 bg-surface dark:bg-surface-container border-b border-outline-variant dark:border-outline flat no shadows">
+<div class="flex items-center gap-lg">
+<!-- Mobile menu button -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Desktop Navigation Links (Top Bar specific) -->
+<nav class="hidden md:flex gap-6 h-full items-center">
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80 h-full flex items-center border-b-2 border-transparent hover:border-primary-container" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80 h-full flex items-center mt-[4px]" href="#">Library</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-outline-variant hover:text-primary dark:hover:text-primary-fixed transition-colors cursor-pointer active:opacity-80 h-full flex items-center border-b-2 border-transparent hover:border-primary-container" href="#">Analytics</a>
+</nav>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex items-center gap-2 bg-primary text-on-primary px-4 py-2 rounded-md font-label-md text-label-md hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Create Tutorial
+                </button>
+<div class="flex items-center gap-2 border-l border-outline-variant pl-4 ml-2">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors cursor-pointer active:opacity-80">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant cursor-pointer ml-2">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate user, neutral expression, modern light-mode lighting, minimal background." src="/images/image_30.png"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Canvas / Page Content -->
+<div class="flex-1 overflow-y-auto bg-surface-container-lowest">
+<div class="max-w-max-width mx-auto px-4 sm:px-gutter py-xl">
+<!-- Page Header & Filtering Toolbar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-lg">
+<div>
+<h2 class="font-display text-display text-on-surface mb-2">Tutorial Library</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Browse, manage, and learn from your organization's collective knowledge.</p>
+</div>
+<div class="flex items-center gap-2 bg-surface p-1 rounded-lg border border-outline-variant self-start md:self-end">
+<button aria-label="Grid view" class="p-2 bg-surface-container-highest text-on-surface rounded-md shadow-sm">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button aria-label="List view" class="p-2 text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-md transition-colors">
+<span class="material-symbols-outlined">view_list</span>
+</button>
+</div>
+</div>
+<!-- Search and Filters (Bento-style layout for toolbar) -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-xl">
+<!-- Search Input -->
+<div class="md:col-span-5 relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline group-focus-within:text-primary transition-colors">search</span>
+</div>
+<input class="block w-full pl-10 pr-3 py-2.5 border border-outline-variant rounded-lg leading-5 bg-surface-container-lowest placeholder-outline focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container font-body-md text-body-md transition-all" placeholder="Search tutorials..." type="text"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+<span class="font-label-sm text-label-sm text-outline border border-outline-variant rounded px-1.5 py-0.5 bg-surface-container">⌘K</span>
+</div>
+</div>
+<!-- Filters -->
+<div class="md:col-span-7 flex flex-wrap gap-3">
+<div class="relative inline-block w-full sm:w-auto flex-1 sm:flex-none">
+<select class="block w-full pl-3 pr-10 py-2.5 text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container font-body-md text-body-md appearance-none">
+<option>All Categories</option>
+<option>Onboarding</option>
+<option>Development</option>
+<option>Design</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-on-surface-variant">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<div class="relative inline-block w-full sm:w-auto flex-1 sm:flex-none">
+<select class="block w-full pl-3 pr-10 py-2.5 text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container font-body-md text-body-md appearance-none">
+<option>Difficulty</option>
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Advanced</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-on-surface-variant">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<div class="relative inline-block w-full sm:w-auto flex-1 sm:flex-none">
+<select class="block w-full pl-3 pr-10 py-2.5 text-on-surface bg-surface-container-lowest border border-outline-variant rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-primary-container font-body-md text-body-md appearance-none">
+<option>Time</option>
+<option>&lt; 5 mins</option>
+<option>5 - 15 mins</option>
+<option>&gt; 15 mins</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-on-surface-variant">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+<button class="flex items-center justify-center gap-2 px-4 py-2.5 border border-outline-variant text-on-surface-variant bg-surface-container-lowest rounded-lg hover:bg-surface-container-low transition-colors font-label-md text-label-md sm:ml-auto">
+<span class="material-symbols-outlined text-[18px]">filter_list</span>
+                            More
+                        </button>
+</div>
+</div>
+<!-- Tutorial Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0_4px_6px_-1px_rgb(0,0,0,0.1),0_2px_4px_-2px_rgb(0,0,0,0.1)] hover:border-outline transition-all duration-300 flex flex-col h-full cursor-pointer">
+<div class="relative w-full h-40 bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A clean, minimalist 3D rendering of a web browser interface with floating abstract geometric shapes. High-key lighting, light mode palette with indigo accents, conveying modern software development." src="/images/image_31.png"/>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface px-2.5 py-1 rounded-md font-label-sm text-label-sm border border-outline-variant/50">Development</span>
+</div>
+<div class="absolute bottom-3 right-3 bg-inverse-surface/90 text-inverse-on-surface px-2 py-1 rounded font-label-sm text-label-sm flex items-center gap-1 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px]">timer</span> 12m
+                            </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<span class="inline-flex items-center rounded-full bg-secondary-container px-2 py-0.5 font-label-sm text-label-sm text-on-secondary-container">Intermediate</span>
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">bookmark_border</span></button>
+</div>
+<h3 class="font-headline-md text-[18px] leading-tight text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">Building Custom Hooks in React</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4 flex-1">Learn how to extract component logic into reusable functions for cleaner architecture.</p>
+<div class="flex items-center mt-auto pt-4 border-t border-outline-variant">
+<img class="w-6 h-6 rounded-full mr-2 object-cover" data-alt="A small circular avatar of a young female developer with glasses, smiling, bright light-mode background." src="/images/image_32.png"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sarah Jenkins</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0_4px_6px_-1px_rgb(0,0,0,0.1),0_2px_4px_-2px_rgb(0,0,0,0.1)] hover:border-outline transition-all duration-300 flex flex-col h-full cursor-pointer">
+<div class="relative w-full h-40 bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Abstract minimalist design featuring layered semi-transparent glass panels and soft light gradients. Light mode aesthetic, conveying UI/UX design concepts." src="/images/image_33.png"/>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface px-2.5 py-1 rounded-md font-label-sm text-label-sm border border-outline-variant/50">Design</span>
+</div>
+<div class="absolute bottom-3 right-3 bg-inverse-surface/90 text-inverse-on-surface px-2 py-1 rounded font-label-sm text-label-sm flex items-center gap-1 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px]">timer</span> 5m
+                            </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<span class="inline-flex items-center rounded-full bg-surface-container px-2 py-0.5 font-label-sm text-label-sm text-on-surface-variant">Beginner</span>
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">bookmark_border</span></button>
+</div>
+<h3 class="font-headline-md text-[18px] leading-tight text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">Grid System Fundamentals</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4 flex-1">Mastering 8pt grids and fluid layouts for modern web applications.</p>
+<div class="flex items-center mt-auto pt-4 border-t border-outline-variant">
+<img class="w-6 h-6 rounded-full mr-2 object-cover" data-alt="A small circular avatar of a male designer with short hair, neutral background, professional studio lighting." src="/images/image_34.png"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Alex Chen</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0_4px_6px_-1px_rgb(0,0,0,0.1),0_2px_4px_-2px_rgb(0,0,0,0.1)] hover:border-outline transition-all duration-300 flex flex-col h-full cursor-pointer">
+<div class="relative w-full h-40 bg-surface-container-low overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A crisp, high-contrast flat lay of a mechanical keyboard and a stylized graph graphic overlaid. Monochromatic grey scale with deep indigo highlights, representing data and typing." src="/images/image_35.png"/>
+<div class="absolute top-3 left-3 flex gap-2">
+<span class="bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface px-2.5 py-1 rounded-md font-label-sm text-label-sm border border-outline-variant/50">Onboarding</span>
+</div>
+<div class="absolute bottom-3 right-3 bg-inverse-surface/90 text-inverse-on-surface px-2 py-1 rounded font-label-sm text-label-sm flex items-center gap-1 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px]">timer</span> 25m
+                            </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<span class="inline-flex items-center rounded-full bg-error-container px-2 py-0.5 font-label-sm text-label-sm text-on-error-container">Advanced</span>
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px] icon-fill text-primary">bookmark</span></button>
+</div>
+<h3 class="font-headline-md text-[18px] leading-tight text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">Setting up the Dev Environment</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4 flex-1">A comprehensive walkthrough for configuring Docker, linting, and local databases.</p>
+<div class="flex items-center mt-auto pt-4 border-t border-outline-variant">
+<div class="w-6 h-6 rounded-full mr-2 bg-tertiary-container flex items-center justify-center text-on-tertiary font-label-sm text-[10px]">MJ</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Mike Johnson</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0_4px_6px_-1px_rgb(0,0,0,0.1),0_2px_4px_-2px_rgb(0,0,0,0.1)] hover:border-outline transition-all duration-300 flex flex-col h-full cursor-pointer">
+<div class="relative w-full h-40 bg-surface-container-low overflow-hidden flex items-center justify-center bg-gradient-to-br from-surface-variant to-surface-container">
+<!-- Using a placeholder for an animated SVG if it existed, or just a patterned background -->
+<div class="absolute inset-0 opacity-10 bg-[radial-gradient(#4f46e5_1px,transparent_1px)] [background-size:16px_16px]"></div>
+<span class="material-symbols-outlined text-[48px] text-tertiary-container relative z-10">api</span>
+<div class="absolute top-3 left-3 flex gap-2 z-10">
+<span class="bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface px-2.5 py-1 rounded-md font-label-sm text-label-sm border border-outline-variant/50">API</span>
+</div>
+<div class="absolute bottom-3 right-3 bg-inverse-surface/90 text-inverse-on-surface px-2 py-1 rounded font-label-sm text-label-sm flex items-center gap-1 backdrop-blur-sm z-10">
+<span class="material-symbols-outlined text-[14px]">timer</span> 8m
+                            </div>
+</div>
+<div class="p-4 flex flex-col flex-1">
+<div class="flex justify-between items-start mb-2">
+<span class="inline-flex items-center rounded-full bg-surface-container px-2 py-0.5 font-label-sm text-label-sm text-on-surface-variant">Beginner</span>
+<button class="text-outline hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]">bookmark_border</span></button>
+</div>
+<h3 class="font-headline-md text-[18px] leading-tight text-on-surface mb-2 group-hover:text-primary transition-colors line-clamp-2">Authentication Endpoints Guide</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4 flex-1">How to properly generate and pass JWT tokens in your requests.</p>
+<div class="flex items-center mt-auto pt-4 border-t border-outline-variant">
+<img class="w-6 h-6 rounded-full mr-2 object-cover" data-alt="Avatar of a technical writer, neutral lighting, minimalist white background." src="/images/image_36.png"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Elena Rossi</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-xl flex items-center justify-between border-t border-outline-variant pt-6">
+<div class="hidden sm:block">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Showing <span class="font-medium text-on-surface">1</span> to <span class="font-medium text-on-surface">4</span> of <span class="font-medium text-on-surface">24</span> results
+                        </p>
+</div>
+<div class="flex flex-1 justify-between sm:justify-end gap-2">
+<button class="relative inline-flex items-center rounded-md border border-outline-variant bg-surface-container-lowest px-4 py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+                            Previous
+                        </button>
+<div class="hidden sm:flex items-center gap-1 mx-2">
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary-container text-on-primary-container font-label-md text-label-md">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors">3</button>
+<span class="text-outline mx-1">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors">6</button>
+</div>
+<button class="relative inline-flex items-center rounded-md border border-outline-variant bg-surface-container-lowest px-4 py-2 font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors">
+                            Next
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

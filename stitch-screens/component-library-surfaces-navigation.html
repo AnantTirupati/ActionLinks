@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Component Library - Surfaces &amp; Navigation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dadada",
+                        "outline": "#777587",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-container": "#eeeeee",
+                        "on-secondary-fixed": "#131b2e",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#d5e3fc",
+                        "surface": "#f9f9f9",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container-low": "#f3f3f3",
+                        "on-tertiary-fixed": "#0d1c2e",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4d44e3",
+                        "primary-fixed": "#e2dfff",
+                        "on-tertiary-fixed-variant": "#3a485b",
+                        "inverse-primary": "#c3c0ff",
+                        "on-surface-variant": "#464555",
+                        "tertiary": "#3b495d",
+                        "secondary": "#565e74",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#536176",
+                        "outline-variant": "#c7c4d8",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#0f0069",
+                        "background": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-tertiary-container": "#cedcf4",
+                        "secondary-container": "#dae2fd",
+                        "on-secondary-container": "#5c647a",
+                        "on-primary-container": "#dad7ff",
+                        "primary-container": "#4f46e5",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "tertiary-fixed-dim": "#b9c7df",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-bright": "#f9f9f9",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "primary": "#3525cd",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1a1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "max-width": "1280px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "margin": "32px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md min-h-screen flex flex-col md:flex-row">
+<!-- SideNavBar (Web) -->
+<nav class="hidden md:flex flex-col h-screen sticky top-0 p-md space-y-xs bg-surface dark:bg-on-background docked left-0 w-64 border-r border-outline-variant dark:border-outline flat no shadows z-40">
+<div class="flex items-center gap-md px-md py-sm mb-lg">
+<img alt="Organization Logo" class="w-8 h-8 rounded-full" data-alt="A minimalist, geometric logo representing an enterprise software brand, utilizing clean lines and a primary indigo color on a white background. Professional and modern." src="/images/image_1.png"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface">Action Links</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Enterprise SaaS</p>
+</div>
+</div>
+<div class="flex-1 space-y-xs">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">home</span>
+<span>Home</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">account_tree</span>
+<span>Projects</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">bolt</span>
+<span>Automations</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span>Team</span>
+</a>
+<a class="flex items-center gap-md bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg px-md py-sm font-semibold hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md Active: scale-[0.99] duration-200" href="#">
+<span class="material-symbols-outlined fill">inventory_2</span>
+<span>Library</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="mt-auto space-y-xs pt-md border-t border-outline-variant">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span>Support</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span>Documentation</span>
+</a>
+<button class="w-full mt-md bg-primary-container text-on-primary-container font-label-md text-label-md py-sm rounded-md hover:opacity-90 transition-opacity">
+                Upgrade Plan
+            </button>
+</div>
+</nav>
+<div class="flex-1 flex flex-col min-w-0">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center px-lg py-sm w-full max-w-max-width mx-auto z-50 bg-surface-container-lowest dark:bg-inverse-surface docked full-width top-0 border-b border-outline-variant dark:border-outline flat no shadows md:sticky md:top-0">
+<div class="flex items-center gap-lg">
+<span class="font-display text-display font-black text-primary dark:text-inverse-primary md:hidden">Action Links</span>
+<nav class="hidden md:flex gap-lg h-full pt-2">
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium pb-4 hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors font-label-md text-label-md" href="#">Dashboard</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium pb-4 hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors font-label-md text-label-md" href="#">Workflows</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium pb-4 hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors font-label-md text-label-md" href="#">Analytics</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary font-bold pb-4 hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors font-label-md text-label-md Active: opacity-80 duration-150" href="#">Integrations</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<div class="hidden md:flex items-center bg-surface-container-low rounded-md px-sm py-xs border border-outline-variant focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-outline text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md font-body-md text-on-surface placeholder:text-outline outline-none px-sm w-48" placeholder="Search..." type="text"/>
+</div>
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined">help</span></button>
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined">settings</span></button>
+<button class="hidden md:flex items-center gap-xs bg-primary text-on-primary font-label-md text-label-md px-md py-sm rounded-md hover:bg-primary/90 transition-colors">
+                    Create New
+                </button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A small, circular profile picture of a professional looking individual, well lit, against a neutral background." src="/images/image_2.png"/>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 p-lg md:p-xl max-w-max-width mx-auto w-full overflow-y-auto space-y-xl">
+<div class="mb-xl">
+<h1 class="font-headline-lg text-headline-lg md:font-display md:text-display text-on-background mb-sm">Surfaces &amp; Navigation</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-3xl">Comprehensive library of container components, dialogs, and navigation patterns utilized across the Action Links platform.</p>
+</div>
+<!-- Bento Grid Layout for Components -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Cards Section (Spans 8 cols) -->
+<section class="col-span-1 md:col-span-8 space-y-lg">
+<h2 class="font-headline-md text-headline-md text-on-background border-b border-outline-variant pb-xs">Cards &amp; Containers</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<!-- Standard Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg hover:shadow-[0_4px_6px_-1px_rgb(0,0,0,0.1)] transition-shadow">
+<h3 class="font-headline-md text-headline-md mb-xs">Standard Surface</h3>
+<p class="text-on-surface-variant font-body-md text-body-md mb-md">Level 1 surface with a 1px border. Used for generic content grouping and standard list items.</p>
+<button class="text-primary font-label-md text-label-md hover:underline">View Details</button>
+</div>
+<!-- Elevated Card (Level 2) -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg shadow-[0_4px_6px_-1px_rgb(0,0,0,0.1),0_2px_4px_-2px_rgb(0,0,0,0.1)]">
+<div class="flex justify-between items-start mb-sm">
+<h3 class="font-headline-md text-headline-md">Elevated Surface</h3>
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</div>
+<p class="text-on-surface-variant font-body-md text-body-md mb-md">Level 2 surface utilizing a subtle ambient shadow. Recommended for interactable tiles or prominent data points.</p>
+<div class="flex gap-sm">
+<span class="bg-secondary-container text-on-secondary-container px-sm py-[2px] rounded font-label-sm text-label-sm">Active</span>
+<span class="bg-surface-container text-on-surface-variant px-sm py-[2px] rounded font-label-sm text-label-sm">v2.4</span>
+</div>
+</div>
+<!-- Card with Image -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden sm:col-span-2 flex flex-col sm:flex-row">
+<img class="w-full sm:w-48 h-32 sm:h-auto object-cover border-b sm:border-b-0 sm:border-r border-outline-variant" data-alt="A clean, abstract data visualization graphic showing a rising trend line with soft glowing nodes, set against a light mode enterprise dashboard background. Professional, analytical, minimalist." src="/images/image_3.png"/>
+<div class="p-md flex-1 flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-headline-md mb-xs">Media Container</h3>
+<p class="text-on-surface-variant font-body-md text-body-md">Surfaces can seamlessly integrate media. Borders ensure sharp delineation between content areas within the 8pt grid system.</p>
+</div>
+<div class="mt-md flex justify-end">
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md px-md py-sm rounded hover:bg-primary-container/90 transition-colors">Apply Template</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Accordions & Progress (Spans 4 cols) -->
+<section class="col-span-1 md:col-span-4 space-y-lg flex flex-col">
+<h2 class="font-headline-md text-headline-md text-on-background border-b border-outline-variant pb-xs">Disclosure &amp; Status</h2>
+<!-- Accordion -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg divide-y divide-outline-variant">
+<details class="group p-md" open="">
+<summary class="flex justify-between items-center font-label-md text-label-md cursor-pointer list-none text-on-surface">
+<span>API Configuration</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-outline">expand_more</span>
+</summary>
+<div class="pt-sm mt-sm text-on-surface-variant font-body-md text-body-md">
+                                Endpoint URLs and authentication keys are managed here. Ensure environment variables are correctly mapped.
+                            </div>
+</details>
+<details class="group p-md">
+<summary class="flex justify-between items-center font-label-md text-label-md cursor-pointer list-none text-on-surface">
+<span>Webhooks</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-outline">expand_more</span>
+</summary>
+<div class="pt-sm mt-sm text-on-surface-variant font-body-md text-body-md">
+                                Configure payload destinations for automated events.
+                            </div>
+</details>
+<details class="group p-md">
+<summary class="flex justify-between items-center font-label-md text-label-md cursor-pointer list-none text-on-surface">
+<span>Rate Limits</span>
+<span class="material-symbols-outlined transition-transform group-open:rotate-180 text-outline">expand_more</span>
+</summary>
+<div class="pt-sm mt-sm text-on-surface-variant font-body-md text-body-md">
+                                Current usage against tier limitations.
+                            </div>
+</details>
+</div>
+<!-- Progress -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md mt-auto">
+<h3 class="font-label-md text-label-md mb-md">System Migration</h3>
+<div class="space-y-sm mb-md">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Data Transfer</span>
+<span>65%</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 65%"></div>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative w-10 h-10 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3"></path>
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="80, 100" stroke-linecap="round" stroke-width="3"></path>
+</svg>
+<span class="absolute font-label-sm text-label-sm">80</span>
+</div>
+<div class="text-on-surface-variant font-body-md text-body-md">Overall Completion</div>
+</div>
+</div>
+</section>
+<!-- Modals & Empty States (Full width) -->
+<section class="col-span-1 md:col-span-12 space-y-lg">
+<h2 class="font-headline-md text-headline-md text-on-background border-b border-outline-variant pb-xs">Overlays &amp; States</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Modal Demonstration -->
+<div class="relative h-80 bg-surface-container-high rounded-lg border border-outline-variant overflow-hidden flex items-center justify-center p-md">
+<!-- Backdrop -->
+<div class="absolute inset-0 bg-on-background/20 backdrop-blur-sm z-10"></div>
+<!-- Modal Container -->
+<div class="relative z-20 bg-surface-container-lowest w-full max-w-sm rounded-lg shadow-[0_4px_6px_-1px_rgb(0,0,0,0.1),0_2px_4px_-2px_rgb(0,0,0,0.1)] border border-outline-variant">
+<div class="p-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md">Confirm Deletion</h3>
+<button class="text-outline hover:text-on-surface"><span class="material-symbols-outlined">close</span></button>
+</div>
+<div class="p-md font-body-md text-body-md text-on-surface-variant">
+                                    Are you sure you want to permanently delete the workflow "Customer Onboarding"? This action cannot be undone and will affect 3 active integrations.
+                                </div>
+<div class="p-md bg-surface-container-low flex justify-end gap-sm rounded-b-lg border-t border-outline-variant">
+<button class="px-md py-sm font-label-md text-label-md border border-outline-variant rounded hover:bg-surface-container-highest transition-colors">Cancel</button>
+<button class="px-md py-sm font-label-md text-label-md bg-error text-on-error rounded hover:bg-error/90 transition-colors">Delete Workflow</button>
+</div>
+</div>
+</div>
+<!-- Empty State -->
+<div class="h-80 bg-surface-container-lowest rounded-lg border border-outline-variant flex flex-col items-center justify-center p-lg text-center">
+<div class="w-32 h-32 mb-md rounded-full bg-surface-container flex items-center justify-center">
+<img class="w-24 h-24 object-contain opacity-70" data-alt="A minimalist, monochromatic spot illustration of an empty folder or a clear desk, conveying a state of zero data or pristine starting point, using enterprise light mode aesthetics." src="/images/image_4.png"/>
+</div>
+<h3 class="font-headline-md text-headline-md mb-xs">No Integrations Found</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-md">Connect your first third-party service to start automating workflows across your stack.</p>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-md py-sm rounded-md hover:bg-primary/90 transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                Add Integration
+                            </button>
+</div>
+</div>
+</section>
+<!-- Timeline Section (Full width) -->
+<section class="col-span-1 md:col-span-12 space-y-lg mb-xl">
+<h2 class="font-headline-md text-headline-md text-on-background border-b border-outline-variant pb-xs">Activity Timeline</h2>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg">
+<div class="relative pl-6 space-y-6 before:absolute before:inset-y-0 before:left-[11px] before:w-[2px] before:bg-outline-variant">
+<div class="relative">
+<div class="absolute -left-[30px] w-5 h-5 rounded-full bg-primary-container border-4 border-surface-container-lowest flex items-center justify-center">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+</div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Today, 10:42 AM</div>
+<div class="font-label-md text-label-md text-on-surface">Workflow Published</div>
+<div class="font-body-md text-body-md text-on-surface-variant mt-1">"Customer Onboarding v2" was deployed to production by Sarah Jenkins.</div>
+</div>
+<div class="relative">
+<div class="absolute -left-[30px] w-5 h-5 rounded-full bg-surface-container border-4 border-surface-container-lowest flex items-center justify-center">
+<div class="w-2 h-2 bg-outline rounded-full"></div>
+</div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Yesterday, 14:15 PM</div>
+<div class="font-label-md text-label-md text-on-surface">API Key Rotated</div>
+<div class="font-body-md text-body-md text-on-surface-variant mt-1">Stripe production key was automatically rotated per 90-day policy.</div>
+</div>
+<div class="relative">
+<div class="absolute -left-[30px] w-5 h-5 rounded-full bg-surface-container border-4 border-surface-container-lowest flex items-center justify-center">
+<div class="w-2 h-2 bg-outline rounded-full"></div>
+</div>
+<div class="font-label-sm text-label-sm text-outline mb-1">Oct 24, 09:00 AM</div>
+<div class="font-label-md text-label-md text-on-surface">System Update</div>
+<div class="font-body-md text-body-md text-on-surface-variant mt-1">Core engine upgraded to v4.2.0. No downtime reported.</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</div>
+</body></html>

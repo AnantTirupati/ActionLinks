@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Action Links - Loading State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#f0f1f1",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "background": "#f9f9f9",
+                      "tertiary-fixed-dim": "#b9c7df",
+                      "secondary-fixed": "#dae2fd",
+                      "tertiary-fixed": "#d5e3fc",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary-container": "#dad7ff",
+                      "tertiary": "#3b495d",
+                      "surface": "#f9f9f9",
+                      "secondary-container": "#dae2fd",
+                      "error-container": "#ffdad6",
+                      "surface-container": "#eeeeee",
+                      "error": "#ba1a1a",
+                      "on-primary": "#ffffff",
+                      "surface-bright": "#f9f9f9",
+                      "surface-dim": "#dadada",
+                      "on-error-container": "#93000a",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-container": "#5c647a",
+                      "surface-variant": "#e2e2e2",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "on-error": "#ffffff",
+                      "outline": "#777587",
+                      "on-tertiary-container": "#cedcf4",
+                      "on-tertiary-fixed-variant": "#3a485b",
+                      "primary-container": "#4f46e5",
+                      "tertiary-container": "#536176",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "inverse-surface": "#2f3131",
+                      "inverse-primary": "#c3c0ff",
+                      "surface-container-low": "#f3f3f3",
+                      "surface-tint": "#4d44e3",
+                      "on-tertiary-fixed": "#0d1c2e",
+                      "on-surface": "#1a1c1c",
+                      "outline-variant": "#c7c4d8",
+                      "on-secondary-fixed": "#131b2e",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "secondary": "#565e74",
+                      "primary": "#3525cd",
+                      "on-primary-fixed": "#0f0069",
+                      "on-surface-variant": "#464555",
+                      "primary-fixed": "#e2dfff",
+                      "surface-container-highest": "#e2e2e2",
+                      "on-background": "#1a1c1c",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-high": "#e8e8e8"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin": "32px",
+                      "max-width": "1280px",
+                      "md": "16px",
+                      "sm": "8px",
+                      "gutter": "24px",
+                      "lg": "24px",
+                      "base": "8px",
+                      "xs": "4px",
+                      "xl": "32px"
+              },
+              "fontFamily": {
+                      "body-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "display": ["36px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            line-height: 1;
+            letter-spacing: normal;
+            text-transform: none;
+            display: inline-block;
+            white-space: nowrap;
+            word-wrap: normal;
+            direction: ltr;
+            -webkit-font-feature-settings: 'liga';
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .shimmer {
+            background: linear-gradient(to right, #f3f3f3 4%, #e2e2e2 25%, #f3f3f3 36%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite linear;
+        }
+        
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+        
+        .progress-bar-loading {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-bar-loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.5), transparent);
+            animation: progress 1.5s infinite ease-in-out;
+        }
+        
+        @keyframes progress {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Hidden on Mobile) -->
+<nav class="hidden md:flex fixed left-0 top-0 h-full w-64 flex-col p-md z-40 bg-surface border-r border-outline-variant">
+<!-- Header -->
+<div class="mb-xl flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg shimmer bg-surface-container-high"></div>
+<div>
+<div class="w-24 h-5 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-16 h-3 shimmer bg-surface-container-high rounded"></div>
+</div>
+</div>
+<!-- Links -->
+<div class="flex-1 flex flex-col gap-sm">
+<div class="w-12 h-3 shimmer bg-surface-container-high rounded mb-2 mt-4"></div>
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg bg-surface-container-high opacity-70 shimmer">
+<div class="w-5 h-5 rounded-sm bg-surface-container-highest"></div>
+<div class="w-20 h-4 rounded-sm bg-surface-container-highest"></div>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg bg-surface-container opacity-50 shimmer">
+<div class="w-5 h-5 rounded-sm bg-surface-container-highest"></div>
+<div class="w-24 h-4 rounded-sm bg-surface-container-highest"></div>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg bg-surface-container opacity-50 shimmer">
+<div class="w-5 h-5 rounded-sm bg-surface-container-highest"></div>
+<div class="w-16 h-4 rounded-sm bg-surface-container-highest"></div>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg bg-surface-container opacity-50 shimmer">
+<div class="w-5 h-5 rounded-sm bg-surface-container-highest"></div>
+<div class="w-20 h-4 rounded-sm bg-surface-container-highest"></div>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="mt-auto flex flex-col gap-sm border-t border-outline-variant pt-4">
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg bg-surface-container opacity-50 shimmer">
+<div class="w-5 h-5 rounded-sm bg-surface-container-highest"></div>
+<div class="w-20 h-4 rounded-sm bg-surface-container-highest"></div>
+</div>
+<div class="flex items-center gap-3 px-4 py-2 rounded-lg bg-surface-container opacity-50 shimmer">
+<div class="w-5 h-5 rounded-sm bg-surface-container-highest"></div>
+<div class="w-16 h-4 rounded-sm bg-surface-container-highest"></div>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar Loading State -->
+<header class="sticky top-0 z-50 flex flex-col w-full bg-surface">
+<!-- Progress Bar Loading -->
+<div class="h-[2px] w-full bg-surface-container-high progress-bar-loading"></div>
+<div class="flex items-center justify-between px-gutter w-full h-16 border-b border-outline-variant">
+<!-- Mobile Menu Icon Skeleton (visible md:hidden) -->
+<div class="md:hidden w-8 h-8 rounded shimmer bg-surface-container-high"></div>
+<!-- Breadcrumbs/Title Skeleton -->
+<div class="flex items-center gap-2">
+<div class="w-16 h-4 rounded shimmer bg-surface-container-high"></div>
+<div class="w-4 h-4 rounded shimmer bg-surface-container-high mx-1"></div>
+<div class="w-24 h-5 rounded shimmer bg-surface-container-high"></div>
+</div>
+<!-- Actions Skeleton -->
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 rounded-full shimmer bg-surface-container-high"></div>
+<div class="w-8 h-8 rounded-full shimmer bg-surface-container-high"></div>
+<div class="hidden sm:block w-32 h-9 rounded shimmer bg-primary-container opacity-50"></div>
+<div class="w-9 h-9 rounded-full shimmer bg-surface-container-high border border-outline-variant"></div>
+</div>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<div class="flex-1 p-gutter max-w-max-width w-full mx-auto">
+<!-- Page Header Skeleton -->
+<div class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="w-48 h-8 shimmer bg-surface-container-high rounded mb-3"></div>
+<div class="w-64 h-4 shimmer bg-surface-container-high rounded"></div>
+</div>
+<div class="flex gap-3">
+<div class="w-24 h-10 shimmer bg-surface-container-high rounded border border-outline-variant"></div>
+<div class="w-32 h-10 shimmer bg-surface-container-high rounded"></div>
+</div>
+</div>
+<!-- Stats Bento Grid Skeleton -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md mb-xl">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<div class="w-20 h-4 shimmer bg-surface-container-high rounded"></div>
+<div class="w-6 h-6 shimmer bg-surface-container-high rounded-full"></div>
+</div>
+<div>
+<div class="w-16 h-8 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-32 h-3 shimmer bg-surface-container-high rounded"></div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<div class="w-24 h-4 shimmer bg-surface-container-high rounded"></div>
+<div class="w-6 h-6 shimmer bg-surface-container-high rounded-full"></div>
+</div>
+<div>
+<div class="w-20 h-8 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-28 h-3 shimmer bg-surface-container-high rounded"></div>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<div class="w-16 h-4 shimmer bg-surface-container-high rounded"></div>
+<div class="w-6 h-6 shimmer bg-surface-container-high rounded-full"></div>
+</div>
+<div>
+<div class="w-24 h-8 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-36 h-3 shimmer bg-surface-container-high rounded"></div>
+</div>
+</div>
+<!-- Stat Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<div class="w-28 h-4 shimmer bg-surface-container-high rounded"></div>
+<div class="w-6 h-6 shimmer bg-surface-container-high rounded-full"></div>
+</div>
+<div>
+<div class="w-12 h-8 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-24 h-3 shimmer bg-surface-container-high rounded"></div>
+</div>
+</div>
+</div>
+<!-- Main Content Area: Charts & Lists Skeleton -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-xl">
+<!-- Chart Area -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-lg p-lg min-h-[400px] flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<div class="w-32 h-6 shimmer bg-surface-container-high rounded"></div>
+<div class="w-24 h-8 shimmer bg-surface-container-high rounded"></div>
+</div>
+<!-- Chart Placeholder Grid -->
+<div class="flex-1 border-b border-l border-outline-variant flex items-end justify-between pt-8 relative">
+<!-- Y-axis labels -->
+<div class="absolute left-[-24px] top-0 bottom-0 flex flex-col justify-between py-4">
+<div class="w-4 h-3 shimmer bg-surface-container-high rounded"></div>
+<div class="w-4 h-3 shimmer bg-surface-container-high rounded"></div>
+<div class="w-4 h-3 shimmer bg-surface-container-high rounded"></div>
+</div>
+<!-- Grid lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none">
+<div class="w-full h-px bg-surface-container-high opacity-50"></div>
+<div class="w-full h-px bg-surface-container-high opacity-50"></div>
+<div class="w-full h-px bg-surface-container-high opacity-50"></div>
+<div class="w-full h-px bg-surface-container-high opacity-50"></div>
+</div>
+<!-- Bars -->
+<div class="w-[8%] h-[40%] shimmer bg-primary opacity-20 rounded-t-sm mx-1 z-10"></div>
+<div class="w-[8%] h-[60%] shimmer bg-primary opacity-20 rounded-t-sm mx-1 z-10"></div>
+<div class="w-[8%] h-[30%] shimmer bg-primary opacity-20 rounded-t-sm mx-1 z-10"></div>
+<div class="w-[8%] h-[80%] shimmer bg-primary opacity-20 rounded-t-sm mx-1 z-10"></div>
+<div class="w-[8%] h-[50%] shimmer bg-primary opacity-20 rounded-t-sm mx-1 z-10"></div>
+<div class="w-[8%] h-[90%] shimmer bg-primary opacity-20 rounded-t-sm mx-1 z-10"></div>
+<div class="w-[8%] h-[70%] shimmer bg-primary opacity-20 rounded-t-sm mx-1 z-10"></div>
+<div class="w-[8%] h-[45%] shimmer bg-primary opacity-20 rounded-t-sm mx-1 z-10"></div>
+</div>
+</div>
+<!-- Recent Activity List -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-lg flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<div class="w-32 h-6 shimmer bg-surface-container-high rounded"></div>
+</div>
+<div class="flex flex-col gap-4">
+<!-- List Item 1 -->
+<div class="flex items-start gap-3 pb-4 border-b border-surface-container-high">
+<div class="w-8 h-8 rounded-full shimmer bg-surface-container-high shrink-0"></div>
+<div class="flex-1">
+<div class="w-3/4 h-4 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-1/2 h-3 shimmer bg-surface-container-high rounded"></div>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="flex items-start gap-3 pb-4 border-b border-surface-container-high">
+<div class="w-8 h-8 rounded-full shimmer bg-surface-container-high shrink-0"></div>
+<div class="flex-1">
+<div class="w-full h-4 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-1/3 h-3 shimmer bg-surface-container-high rounded"></div>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="flex items-start gap-3 pb-4 border-b border-surface-container-high">
+<div class="w-8 h-8 rounded-full shimmer bg-surface-container-high shrink-0"></div>
+<div class="flex-1">
+<div class="w-2/3 h-4 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-1/2 h-3 shimmer bg-surface-container-high rounded"></div>
+</div>
+</div>
+<!-- List Item 4 -->
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-full shimmer bg-surface-container-high shrink-0"></div>
+<div class="flex-1">
+<div class="w-4/5 h-4 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-1/4 h-3 shimmer bg-surface-container-high rounded"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tutorial Grid Skeleton -->
+<div>
+<div class="w-48 h-6 shimmer bg-surface-container-high rounded mb-6"></div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
+<!-- Tutorial Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col h-64">
+<div class="h-32 w-full shimmer bg-surface-container-high"></div>
+<div class="p-4 flex flex-col flex-1 justify-between">
+<div>
+<div class="w-full h-5 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-2/3 h-5 shimmer bg-surface-container-high rounded"></div>
+</div>
+<div class="flex justify-between items-center mt-4">
+<div class="w-16 h-4 shimmer bg-surface-container-high rounded"></div>
+<div class="w-8 h-8 shimmer bg-surface-container-high rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Tutorial Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col h-64">
+<div class="h-32 w-full shimmer bg-surface-container-high"></div>
+<div class="p-4 flex flex-col flex-1 justify-between">
+<div>
+<div class="w-3/4 h-5 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-1/2 h-5 shimmer bg-surface-container-high rounded"></div>
+</div>
+<div class="flex justify-between items-center mt-4">
+<div class="w-20 h-4 shimmer bg-surface-container-high rounded"></div>
+<div class="w-8 h-8 shimmer bg-surface-container-high rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Tutorial Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col h-64">
+<div class="h-32 w-full shimmer bg-surface-container-high"></div>
+<div class="p-4 flex flex-col flex-1 justify-between">
+<div>
+<div class="w-full h-5 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-3/4 h-5 shimmer bg-surface-container-high rounded"></div>
+</div>
+<div class="flex justify-between items-center mt-4">
+<div class="w-12 h-4 shimmer bg-surface-container-high rounded"></div>
+<div class="w-8 h-8 shimmer bg-surface-container-high rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Tutorial Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col h-64">
+<div class="h-32 w-full shimmer bg-surface-container-high"></div>
+<div class="p-4 flex flex-col flex-1 justify-between">
+<div>
+<div class="w-4/5 h-5 shimmer bg-surface-container-high rounded mb-2"></div>
+<div class="w-2/5 h-5 shimmer bg-surface-container-high rounded"></div>
+</div>
+<div class="flex justify-between items-center mt-4">
+<div class="w-16 h-4 shimmer bg-surface-container-high rounded"></div>
+<div class="w-8 h-8 shimmer bg-surface-container-high rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

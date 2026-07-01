@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Action Links - Empty States</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "background": "#f9f9f9",
+                        "tertiary-fixed-dim": "#b9c7df",
+                        "secondary-fixed": "#dae2fd",
+                        "tertiary-fixed": "#d5e3fc",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-container": "#dad7ff",
+                        "tertiary": "#3b495d",
+                        "surface": "#f9f9f9",
+                        "secondary-container": "#dae2fd",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eeeeee",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "surface-dim": "#dadada",
+                        "on-error-container": "#93000a",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#5c647a",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "on-error": "#ffffff",
+                        "outline": "#777587",
+                        "on-tertiary-container": "#cedcf4",
+                        "on-tertiary-fixed-variant": "#3a485b",
+                        "primary-container": "#4f46e5",
+                        "tertiary-container": "#536176",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "inverse-surface": "#2f3131",
+                        "inverse-primary": "#c3c0ff",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-tint": "#4d44e3",
+                        "on-tertiary-fixed": "#0d1c2e",
+                        "on-surface": "#1a1c1c",
+                        "outline-variant": "#c7c4d8",
+                        "on-secondary-fixed": "#131b2e",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "secondary": "#565e74",
+                        "primary": "#3525cd",
+                        "on-primary-fixed": "#0f0069",
+                        "on-surface-variant": "#464555",
+                        "primary-fixed": "#e2dfff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-background": "#1a1c1c",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e8e8e8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin": "32px",
+                        "max-width": "1280px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "gutter": "24px",
+                        "lg": "24px",
+                        "base": "8px",
+                        "xs": "4px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background h-full font-body-md flex flex-col items-center justify-center min-h-screen p-gutter">
+<div class="w-full max-w-max-width grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- State 1: No Tutorials -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center shadow-[0_4px_6px_-1px_rgb(0_0_0_/_0.05),_0_2px_4px_-2px_rgb(0_0_0_/_0.05)]">
+<div class="w-16 h-16 bg-surface-container flex items-center justify-center rounded-full mb-md">
+<span class="material-symbols-outlined text-on-surface-variant text-4xl" data-icon="video_library">video_library</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm">No tutorials yet</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-lg max-w-[250px]">
+                You haven't created any interactive tutorials. Start building your knowledge base today.
+            </p>
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-lg py-sm rounded hover:opacity-90 transition-opacity">
+                Create Your First Tutorial
+            </button>
+</div>
+<!-- State 2: No Search Results -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center shadow-[0_4px_6px_-1px_rgb(0_0_0_/_0.05),_0_2px_4px_-2px_rgb(0_0_0_/_0.05)]">
+<div class="w-16 h-16 bg-surface-container flex items-center justify-center rounded-full mb-md">
+<span class="material-symbols-outlined text-on-surface-variant text-4xl" data-icon="search_off">search_off</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-sm">We couldn't find anything</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[250px]">
+                No results match your current query. Try adjusting your filters or using different keywords.
+            </p>
+</div>
+<!-- State 3: No Activity -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-xl flex flex-col items-center justify-center text-center shadow-[0_4px_6px_-1px_rgb(0_0_0_/_0.05),_0_2px_4px_-2px_rgb(0_0_0_/_0.05)]">
+<div class="w-full flex justify-between items-center mb-lg border-b border-outline-variant pb-sm">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold">Recent Activity</h3>
+<span class="material-symbols-outlined text-on-surface-variant text-xl cursor-pointer" data-icon="more_horiz">more_horiz</span>
+</div>
+<div class="flex-grow flex flex-col items-center justify-center py-xl">
+<span class="material-symbols-outlined text-outline text-3xl mb-sm" data-icon="history">history</span>
+<p class="font-body-md text-body-md text-on-surface-variant">No recent activity.</p>
+</div>
+</div>
+</div>
+</body></html>

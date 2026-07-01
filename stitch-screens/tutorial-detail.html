@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Advanced React Hooks Patterns - Action Links</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#eeeeee",
+                        "tertiary-container": "#536176",
+                        "surface-dim": "#dadada",
+                        "tertiary": "#3b495d",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#0f0069",
+                        "on-primary-container": "#dad7ff",
+                        "primary-fixed": "#e2dfff",
+                        "primary-container": "#4f46e5",
+                        "on-surface": "#1a1c1c",
+                        "inverse-on-surface": "#f0f1f1",
+                        "inverse-surface": "#2f3131",
+                        "secondary-fixed": "#dae2fd",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "surface-container-low": "#f3f3f3",
+                        "secondary": "#565e74",
+                        "on-tertiary-fixed": "#0d1c2e",
+                        "surface-container-highest": "#e2e2e2",
+                        "tertiary-fixed": "#d5e3fc",
+                        "surface": "#f9f9f9",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-surface-variant": "#464555",
+                        "on-background": "#1a1c1c",
+                        "error": "#ba1a1a",
+                        "primary": "#3525cd",
+                        "on-tertiary-container": "#cedcf4",
+                        "surface-variant": "#e2e2e2",
+                        "surface-container-high": "#e8e8e8",
+                        "tertiary-fixed-dim": "#b9c7df",
+                        "on-secondary-container": "#5c647a",
+                        "surface-bright": "#f9f9f9",
+                        "inverse-primary": "#c3c0ff",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "outline": "#777587",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-primary": "#ffffff",
+                        "outline-variant": "#c7c4d8",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#3a485b",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#dae2fd",
+                        "surface-tint": "#4d44e3",
+                        "on-error-container": "#93000a",
+                        "background": "#f9f9f9"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "margin": "32px",
+                        "md": "16px",
+                        "base": "8px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "max-width": "1280px",
+                        "xs": "4px",
+                        "xl": "32px"
+                    },
+                    fontFamily: {
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    fontSize: {
+                        "label-md": ["14px", { lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500" }],
+                        "body-lg": ["16px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "400" }],
+                        "body-md": ["14px", { lineHeight: "20px", letterSpacing: "0em", fontWeight: "400" }],
+                        "label-sm": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "500" }],
+                        "headline-md": ["20px", { lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "headline-lg": ["24px", { lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "600" }],
+                        "display": ["36px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "600" }],
+                        "headline-lg-mobile": ["20px", { lineHeight: "28px", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #dadada;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #c7c4d8;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md h-screen overflow-hidden flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar Component -->
+<aside class="hidden md:flex flex-col bg-surface fixed left-0 top-0 h-full w-64 p-md z-40 border-r border-outline-variant">
+<!-- Header -->
+<div class="flex items-center gap-3 mb-8 px-4 mt-2">
+<img class="w-8 h-8 rounded bg-surface-container object-cover" data-alt="A clean, minimalist logo for a SaaS application named 'Action Links'. The logo features an abstract, geometric link symbol rendered in a vibrant primary blue/indigo against a solid white background. The style is modern, sharp, and highly professional." src="/images/image_16.png"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-black text-primary">Action Links</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Enterprise Plan</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer active:scale-95 rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+                Home
+            </a>
+<!-- Active Tab -->
+<a class="flex items-center gap-3 px-4 py-2 bg-secondary-container text-on-secondary-container transition-all cursor-pointer active:scale-95 rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined icon-fill" data-icon="video_library">video_library</span>
+                My Tutorials
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer active:scale-95 rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+                Team
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer active:scale-95 rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+                API Keys
+            </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer active:scale-95 rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<!-- CTA & Footer Tabs -->
+<div class="mt-auto flex flex-col gap-4">
+<button class="w-full py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-sm">
+                Upgrade Now
+            </button>
+<div class="flex flex-col gap-1 border-t border-outline-variant pt-4">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer active:scale-95 rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+                    Support
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high transition-all cursor-pointer active:scale-95 rounded-lg font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Log Out
+                </a>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0 md:ml-64 h-full relative">
+<!-- TopNavBar Component -->
+<header class="sticky top-0 z-30 flex items-center justify-between px-gutter w-full h-16 bg-surface border-b border-outline-variant transition-all">
+<!-- Left Side / Search (Simulated based on search_bar="on_left") -->
+<div class="flex items-center flex-1 gap-6">
+<!-- Mobile Menu Trigger -->
+<button class="md:hidden text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="hidden lg:flex items-center relative w-64 group">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant group-focus-within:text-primary transition-colors pointer-events-none" data-icon="search" style="font-size: 20px;">search</span>
+<input class="w-full h-9 pl-10 pr-4 rounded bg-surface-container border border-transparent focus:border-primary focus:bg-surface focus:ring-1 focus:ring-primary focus:outline-none transition-all font-body-md text-body-md text-on-surface placeholder:text-outline" placeholder="Search tutorials..." type="text"/>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-6 h-full">
+<a class="h-full flex items-center font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Dashboard</a>
+<a class="h-full flex items-center font-label-md text-label-md text-primary border-b-2 border-primary cursor-pointer active:opacity-80" href="#" style="margin-bottom: -2px;">Library</a>
+<a class="h-full flex items-center font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80" href="#">Analytics</a>
+</nav>
+</div>
+<!-- Right Side / Actions -->
+<div class="flex items-center gap-4">
+<button class="hidden sm:block px-4 py-2 bg-primary text-on-primary rounded font-label-md text-label-md hover:bg-surface-tint transition-colors shadow-sm whitespace-nowrap">
+                    Create Tutorial
+                </button>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-size: 20px;">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="w-8 h-8 rounded-full hover:bg-surface-container flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="help" style="font-size: 20px;">help</span>
+</button>
+<div class="ml-2 w-8 h-8 rounded-full border border-outline-variant overflow-hidden cursor-pointer hover:border-primary transition-colors">
+<img class="w-full h-full object-cover" data-alt="A small, circular avatar image of a user profile. It shows a young professional man smiling gently. The lighting is even and the background is a neutral light tone. This serves as the logged-in user's profile picture in the top navigation bar of a SaaS dashboard." src="/images/image_17.png"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Scrollable Content Canvas -->
+<main class="flex-1 overflow-y-auto px-4 md:px-gutter py-xl pb-32">
+<div class="max-w-max-width mx-auto">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-label-sm font-label-sm text-outline mb-6">
+<a class="hover:text-primary transition-colors" href="#">Library</a>
+<span>/</span>
+<a class="hover:text-primary transition-colors" href="#">React</a>
+<span>/</span>
+<span class="text-on-surface-variant">Advanced Patterns</span>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+<!-- Left Main Column -->
+<div class="lg:col-span-8 flex flex-col gap-10">
+<!-- Header Section -->
+<div class="flex flex-col gap-4">
+<h1 class="font-display text-headline-lg-mobile md:text-display text-on-surface font-semibold tracking-tight leading-tight">
+                                Advanced React Hooks Patterns
+                            </h1>
+<div class="flex flex-wrap items-center gap-x-6 gap-y-3 mt-2">
+<!-- Author -->
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a female software developer named Sarah Jenkins. She has a friendly expression, wearing a neutral colored tech-startup style t-shirt. The lighting is clean and bright, typical of a modern SaaS application user profile picture. The background is a soft, out-of-focus light gray." src="/images/image_18.png"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Sarah Jenkins</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Senior Staff Engineer</span>
+</div>
+</div>
+<div class="h-4 w-px bg-outline-variant hidden sm:block"></div>
+<!-- Meta Badges -->
+<div class="flex items-center gap-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-md bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm">
+                                        Intermediate
+                                    </span>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined" data-icon="schedule" style="font-size: 18px;">schedule</span>
+                                        24 mins
+                                    </div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined" data-icon="update" style="font-size: 18px;">update</span>
+                                        Updated 2d ago
+                                    </div>
+</div>
+</div>
+</div>
+<!-- Preview Player (Bento Card Style) -->
+<div class="relative w-full aspect-video bg-surface-container-highest rounded-xl border border-outline-variant overflow-hidden group cursor-pointer shadow-sm hover:shadow-md transition-shadow">
+<img class="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300" data-alt="A high-quality thumbnail image for a technical software tutorial video. The image shows a modern, dark-themed code editor window with colorful syntax highlighting visible. Overlaid on the code is a clean, minimalist graphic indicating 'React Hooks Patterns'. The overall visual is crisp, professional, and utilizes a deep indigo and dark gray color palette." src="/images/image_19.png"/>
+<!-- Play Button Overlay -->
+<div class="absolute inset-0 flex items-center justify-center bg-inverse-surface/10 group-hover:bg-inverse-surface/0 transition-colors duration-300">
+<div class="w-16 h-16 rounded-full bg-surface/90 backdrop-blur-sm flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined icon-fill text-primary ml-1" data-icon="play_arrow" style="font-size: 32px;">play_arrow</span>
+</div>
+</div>
+<!-- Progress Bar Hint -->
+<div class="absolute bottom-0 left-0 w-full h-1 bg-surface-container-high">
+<div class="h-full bg-primary w-1/4"></div>
+</div>
+</div>
+<!-- Description Section -->
+<section class="flex flex-col gap-4">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-2">Overview</h2>
+<div class="prose prose-sm md:prose-base max-w-none text-on-surface-variant font-body-lg text-body-lg leading-relaxed">
+<p class="mb-4">
+                                    Move beyond basic <code>useState</code> and <code>useEffect</code>. In this comprehensive module, we dive deep into advanced composition patterns for React Hooks that enable highly reusable, testable, and performant logic sharing across your enterprise applications.
+                                </p>
+<p class="mb-4">
+                                    You will learn how to implement the <strong>State Reducer pattern</strong> for maximum inversion of control, utilize the <strong>Control Props pattern</strong> for flexible component APIs, and master custom hook optimization strategies using <code>useMemo</code> and <code>useCallback</code> appropriately. By the end of this tutorial, you'll be able to refactor complex component logic into elegant, isolated hooks.
+                                </p>
+</div>
+</section>
+<!-- Steps Timeline -->
+<section class="flex flex-col gap-6 mt-4">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-outline-variant pb-2">Curriculum Steps</h2>
+<div class="flex flex-col relative before:absolute before:inset-y-2 before:left-[15px] md:before:left-[19px] before:w-px before:bg-outline-variant">
+<!-- Step 1 -->
+<div class="relative flex gap-4 md:gap-6 pb-8 group">
+<div class="relative z-10 w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center border-[3px] border-surface flex-shrink-0 font-label-md text-label-md font-bold shadow-sm">
+                                        1
+                                    </div>
+<div class="flex flex-col pt-1 md:pt-2 flex-1">
+<h3 class="font-headline-md text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Setup &amp; Architecture Review</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Reviewing the starter codebase and identifying tight coupling issues.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative flex gap-4 md:gap-6 pb-8 group">
+<div class="relative z-10 w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-highest text-on-surface-variant border-[3px] border-surface flex items-center justify-center flex-shrink-0 font-label-md text-label-md font-bold shadow-sm group-hover:border-primary-fixed transition-colors">
+                                        2
+                                    </div>
+<div class="flex flex-col pt-1 md:pt-2 flex-1">
+<h3 class="font-headline-md text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">The Compound Components Pattern</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Building a flexible UI shell using Context and Compound Components.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative flex gap-4 md:gap-6 pb-8 group">
+<div class="relative z-10 w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-highest text-on-surface-variant border-[3px] border-surface flex items-center justify-center flex-shrink-0 font-label-md text-label-md font-bold shadow-sm group-hover:border-primary-fixed transition-colors">
+                                        3
+                                    </div>
+<div class="flex flex-col pt-1 md:pt-2 flex-1">
+<h3 class="font-headline-md text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Implementing State Reducers</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Allowing users to intercept and modify internal state changes.</p>
+</div>
+</div>
+<!-- Step 4 (Last) -->
+<div class="relative flex gap-4 md:gap-6 group">
+<div class="relative z-10 w-8 h-8 md:w-10 md:h-10 rounded-full bg-surface-container-highest text-on-surface-variant border-[3px] border-surface flex items-center justify-center flex-shrink-0 font-label-md text-label-md font-bold shadow-sm group-hover:border-primary-fixed transition-colors">
+                                        4
+                                    </div>
+<div class="flex flex-col pt-1 md:pt-2 flex-1">
+<h3 class="font-headline-md text-body-lg font-semibold text-on-surface group-hover:text-primary transition-colors">Performance Optimization Clinic</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Measuring renders and applying targeted memoization to the custom hooks.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Community Section -->
+<section class="flex flex-col gap-6 mt-8 p-6 bg-surface-container-lowest rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Community Discussion</h2>
+<div class="flex items-center gap-2">
+<div class="flex text-primary">
+<span class="material-symbols-outlined icon-fill" style="font-size: 20px;">star</span>
+<span class="material-symbols-outlined icon-fill" style="font-size: 20px;">star</span>
+<span class="material-symbols-outlined icon-fill" style="font-size: 20px;">star</span>
+<span class="material-symbols-outlined icon-fill" style="font-size: 20px;">star</span>
+<span class="material-symbols-outlined" style="font-size: 20px;">star_half</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface">4.8</span>
+<span class="font-body-md text-body-md text-on-surface-variant">(124 ratings)</span>
+</div>
+</div>
+<!-- Add Comment -->
+<div class="flex gap-4 items-start">
+<img class="w-8 h-8 rounded-full object-cover border border-outline-variant mt-1" data-alt="A small, circular avatar image of a user profile. It shows a young professional man smiling gently. The lighting is even and the background is a neutral light tone. This serves as the logged-in user's profile picture next to a comment input field." src="/images/image_20.png"/>
+<div class="flex-1 flex flex-col gap-3">
+<textarea class="w-full rounded-lg bg-surface border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none p-3 font-body-md text-body-md text-on-surface placeholder:text-outline resize-none transition-shadow" placeholder="Ask a question or share your thoughts..." rows="3"></textarea>
+<div class="flex justify-end">
+<button class="px-5 py-2 bg-secondary text-on-secondary rounded-lg font-label-md text-label-md hover:bg-tertiary-container transition-colors">
+                                            Post Comment
+                                        </button>
+</div>
+</div>
+</div>
+<!-- Comment Thread -->
+<div class="flex flex-col gap-6 mt-4">
+<div class="flex gap-4">
+<img class="w-8 h-8 rounded-full object-cover bg-surface-container mt-1" data-alt="A small avatar of a user named David. A minimalist generic silhouette profile icon on a pale blue background." src="/images/image_21.png"/>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-md text-label-md text-on-surface">David Chen</span>
+<span class="font-body-sm text-xs text-on-surface-variant">2 days ago</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                                            The section on State Reducers completely changed how I build reusable form components. Highly recommend pausing on step 3 and trying to implement it yourself before watching the solution.
+                                        </p>
+<div class="flex items-center gap-4 mt-2">
+<button class="flex items-center gap-1 text-on-surface-variant hover:text-primary transition-colors font-label-sm text-label-sm">
+<span class="material-symbols-outlined" style="font-size: 16px;">thumb_up</span> 14
+                                            </button>
+<button class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors">Reply</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Sidebar Column -->
+<div class="lg:col-span-4 flex flex-col gap-6 relative">
+<!-- Sticky Action Card -->
+<div class="sticky top-24 flex flex-col gap-6 bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm">
+<!-- Primary CTA -->
+<div class="flex flex-col gap-3 border-b border-outline-variant pb-6">
+<button class="w-full py-3 bg-primary text-on-primary rounded-lg font-label-md text-label-md font-semibold hover:bg-surface-tint shadow-sm hover:shadow transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined icon-fill">play_circle</span>
+                                    Resume Tutorial
+                                </button>
+<button class="w-full py-2.5 bg-surface text-on-surface border border-outline-variant rounded-lg font-label-md text-label-md hover:bg-surface-container-lowest transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">bookmark_add</span>
+                                    Save for Later
+                                </button>
+<div class="mt-2 flex items-center justify-center gap-1 text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary" style="font-size: 16px;">verified</span>
+                                    Included in Enterprise Plan
+                                </div>
+</div>
+<!-- Meta Stats Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<span class="material-symbols-outlined text-on-surface-variant mb-1" style="font-size: 20px;">visibility</span>
+<span class="font-headline-md text-headline-md text-on-surface">1.2k</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Views</span>
+</div>
+<div class="flex flex-col bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<span class="material-symbols-outlined text-on-surface-variant mb-1" style="font-size: 20px;">task_alt</span>
+<span class="font-headline-md text-headline-md text-on-surface">450</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Completions</span>
+</div>
+<div class="flex flex-col bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<span class="material-symbols-outlined text-on-surface-variant mb-1" style="font-size: 20px;">library_books</span>
+<span class="font-headline-md text-headline-md text-on-surface">4</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Modules</span>
+</div>
+<div class="flex flex-col bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<span class="material-symbols-outlined text-on-surface-variant mb-1" style="font-size: 20px;">code</span>
+<span class="font-headline-md text-headline-md text-on-surface">React</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Category</span>
+</div>
+</div>
+<!-- Related Tutorials -->
+<div class="flex flex-col gap-4 pt-2">
+<h3 class="font-label-md text-label-md text-on-surface font-semibold">Related Tutorials</h3>
+<a class="flex items-start gap-3 group" href="#">
+<div class="w-20 h-14 bg-surface-container-high rounded border border-outline-variant overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A small thumbnail for a related software tutorial. It shows a minimalist graphic of a web server architecture diagram in dark mode with neon blue and purple accents." src="/images/image_22.png"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2 leading-tight">Mastering React Context API for Global State</span>
+<span class="font-body-sm text-xs text-on-surface-variant mt-1">18 mins</span>
+</div>
+</a>
+<a class="flex items-start gap-3 group" href="#">
+<div class="w-20 h-14 bg-surface-container-high rounded border border-outline-variant overflow-hidden flex-shrink-0 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="A small thumbnail for a related software tutorial. It shows an abstract geometric representation of data flowing through a system, rendered in a clean, flat design style using primary colors." src="/images/image_23.png"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface group-hover:text-primary transition-colors line-clamp-2 leading-tight">Server-Side Rendering with Next.js</span>
+<span class="font-body-sm text-xs text-on-surface-variant mt-1">45 mins</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer (from JSON) -->
+<footer class="mt-24 border-t border-outline-variant bg-surface-container-lowest">
+<div class="w-full py-xl px-gutter flex flex-col md:flex-row justify-between items-center max-w-max-width mx-auto gap-4">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Action Links</span>
+<nav class="flex flex-wrap items-center gap-6">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary underline transition-colors cursor-pointer" href="#">Privacy Policy</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary underline transition-colors cursor-pointer" href="#">Terms of Service</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary underline transition-colors cursor-pointer" href="#">Security</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary underline transition-colors cursor-pointer" href="#">Status</a>
+</nav>
+<span class="font-body-md text-body-md text-on-surface-variant">© 2024 Action Links Inc. All rights reserved.</span>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

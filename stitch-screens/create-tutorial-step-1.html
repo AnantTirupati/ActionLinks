@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Tutorial - Action Links</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-container": "#5c647a",
+                      "on-tertiary-fixed": "#0d1c2e",
+                      "surface-variant": "#e2e2e2",
+                      "on-primary": "#ffffff",
+                      "tertiary-container": "#536176",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#f0f1f1",
+                      "error-container": "#ffdad6",
+                      "background": "#f9f9f9",
+                      "tertiary-fixed-dim": "#b9c7df",
+                      "surface": "#f9f9f9",
+                      "on-primary-fixed": "#0f0069",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "tertiary-fixed": "#d5e3fc",
+                      "surface-container-high": "#e8e8e8",
+                      "primary": "#3525cd",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed": "#dae2fd",
+                      "surface-container": "#eeeeee",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "on-surface-variant": "#464555",
+                      "surface-container-low": "#f3f3f3",
+                      "primary-fixed": "#e2dfff",
+                      "outline": "#777587",
+                      "on-surface": "#1a1c1c",
+                      "surface-tint": "#4d44e3",
+                      "on-error": "#ffffff",
+                      "primary-container": "#4f46e5",
+                      "on-tertiary-fixed-variant": "#3a485b",
+                      "on-tertiary-container": "#cedcf4",
+                      "inverse-surface": "#2f3131",
+                      "surface-container-highest": "#e2e2e2",
+                      "secondary-container": "#dae2fd",
+                      "error": "#ba1a1a",
+                      "tertiary": "#3b495d",
+                      "surface-dim": "#dadada",
+                      "on-primary-container": "#dad7ff",
+                      "outline-variant": "#c7c4d8",
+                      "on-tertiary": "#ffffff",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#c3c0ff",
+                      "secondary": "#565e74",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "surface-bright": "#f9f9f9",
+                      "on-secondary-fixed": "#131b2e",
+                      "on-background": "#1a1c1c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "xl": "32px",
+                      "margin": "32px",
+                      "gutter": "24px",
+                      "max-width": "1280px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display": [
+                              "36px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.015em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0em",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-hover {
+            transition: all 0.2s ease-in-out;
+        }
+        .card-hover:hover {
+            border-color: #c7c4d8;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+        .card-selected {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 1px #4f46e5;
+            background-color: #f8f8ff; /* extremely subtle tint */
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased flex">
+<!-- Suppressed Nav: This is a linear creation flow, so the side nav is suppressed to focus the user on the task canvas. -->
+<!-- Main Content Canvas -->
+<main class="flex-1 min-h-screen flex flex-col items-center py-xl px-gutter max-w-3xl mx-auto w-full relative">
+<!-- Header & Top Navigation for linear flow -->
+<header class="w-full flex items-center justify-between mb-xl">
+<a class="flex items-center gap-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-size: 20px;">arrow_back</span>
+<span class="font-label-md text-label-md">Cancel</span>
+</a>
+<div class="font-label-md text-label-md text-on-surface-variant">Step 1 of 4</div>
+<div class="w-20"></div> <!-- Spacer for centering -->
+</header>
+<!-- Stepper -->
+<div class="w-full mb-xl">
+<div class="flex items-center justify-between relative">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-px bg-surface-variant -z-10"></div>
+<!-- Step 1 (Active) -->
+<div class="flex flex-col items-center gap-sm bg-background px-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-label-md text-label-md shadow-[0_0_0_4px_#f9f9f9]">
+                        1
+                    </div>
+<span class="font-label-sm text-label-sm text-on-surface">Source</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-sm bg-background px-sm">
+<div class="w-8 h-8 rounded-full border border-surface-variant bg-surface-container-lowest text-on-surface-variant flex items-center justify-center font-label-md text-label-md shadow-[0_0_0_4px_#f9f9f9]">
+                        2
+                    </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Processing</span>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-sm bg-background px-sm">
+<div class="w-8 h-8 rounded-full border border-surface-variant bg-surface-container-lowest text-on-surface-variant flex items-center justify-center font-label-md text-label-md shadow-[0_0_0_4px_#f9f9f9]">
+                        3
+                    </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Preview</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center gap-sm bg-background px-sm">
+<div class="w-8 h-8 rounded-full border border-surface-variant bg-surface-container-lowest text-on-surface-variant flex items-center justify-center font-label-md text-label-md shadow-[0_0_0_4px_#f9f9f9]">
+                        4
+                    </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Finalize</span>
+</div>
+</div>
+</div>
+<!-- Page Header -->
+<div class="w-full text-center mb-xl">
+<h1 class="font-display text-display text-on-surface mb-sm tracking-tight">Create a New Tutorial</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Select your source material to begin the AI-powered extraction.</p>
+</div>
+<!-- Source Selection Grid -->
+<div class="w-full grid grid-cols-1 md:grid-cols-3 gap-md mb-xl">
+<!-- Option 1: YouTube -->
+<button class="source-option text-left bg-surface-container-lowest border border-surface-variant rounded-lg p-lg card-hover flex flex-col gap-md relative overflow-hidden group focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">smart_display</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">Paste YouTube URL</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Extract steps directly from a public video.</p>
+</div>
+<!-- Expanded Input Area (Hidden initially, simulated via CSS/JS below) -->
+<div class="input-area mt-sm hidden w-full">
+<input class="w-full bg-surface-container-lowest border border-surface-variant rounded-md px-sm py-2 font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all" onclick="event.stopPropagation();" placeholder="https://youtube.com/watch?v=..." type="text"/>
+</div>
+</button>
+<!-- Option 2: Upload -->
+<button class="source-option text-left bg-surface-container-lowest border border-surface-variant rounded-lg p-lg card-hover flex flex-col gap-md focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">upload_file</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">Upload Recording</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Drag and drop MP4 or WebM files.</p>
+</div>
+<div class="input-area mt-sm hidden w-full border-2 border-dashed border-outline-variant rounded-md p-md flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container transition-colors" onclick="event.stopPropagation();">
+<span class="material-symbols-outlined text-outline-variant mb-xs">cloud_upload</span>
+<span class="font-label-sm text-label-sm text-outline">Browse files</span>
+</div>
+</button>
+<!-- Option 3: Website -->
+<button class="source-option text-left bg-surface-container-lowest border border-surface-variant rounded-lg p-lg card-hover flex flex-col gap-md focus:outline-none focus:ring-2 focus:ring-primary-container focus:border-transparent">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined">language</span>
+</div>
+<div>
+<h3 class="font-label-md text-label-md text-on-surface mb-xs">Paste Website URL</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Parse documentation or web guides.</p>
+</div>
+<div class="input-area mt-sm hidden w-full">
+<input class="w-full bg-surface-container-lowest border border-surface-variant rounded-md px-sm py-2 font-body-md text-body-md text-on-surface placeholder:text-outline-variant focus:border-primary-container focus:ring-1 focus:ring-primary-container outline-none transition-all" onclick="event.stopPropagation();" placeholder="https://docs.example.com..." type="text"/>
+</div>
+</button>
+</div>
+<!-- Action Footer -->
+<div class="w-full flex justify-end mt-auto pt-xl border-t border-surface-variant">
+<button class="bg-primary-container text-on-primary font-label-md text-label-md px-xl py-3 rounded-md opacity-50 cursor-not-allowed transition-all" disabled="" id="continue-btn">
+                Continue
+            </button>
+</div>
+</main>
+<script>
+        // Simple micro-interaction script to handle selection state
+        const options = document.querySelectorAll('.source-option');
+        const continueBtn = document.getElementById('continue-btn');
+
+        options.forEach(option => {
+            option.addEventListener('click', (e) => {
+                // Reset all
+                options.forEach(opt => {
+                    opt.classList.remove('card-selected');
+                    const inputArea = opt.querySelector('.input-area');
+                    if(inputArea) inputArea.classList.add('hidden');
+                });
+
+                // Set active
+                option.classList.add('card-selected');
+                const activeInputArea = option.querySelector('.input-area');
+                if(activeInputArea) {
+                    activeInputArea.classList.remove('hidden');
+                    // Focus the input if it exists
+                    const input = activeInputArea.querySelector('input');
+                    if(input) input.focus();
+                }
+
+                // Enable button
+                continueBtn.disabled = false;
+                continueBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                continueBtn.classList.add('hover:bg-surface-tint', 'active:scale-95');
+            });
+        });
+
+        // Prevent button clicks from bubbling up to the option card if we added explicit buttons inside
+        const innerInputs = document.querySelectorAll('.input-area input');
+        innerInputs.forEach(input => {
+            input.addEventListener('input', (e) => {
+                // Could add validation logic here to enable/disable continue button based on input length
+                if(e.target.value.length > 5) {
+                     continueBtn.disabled = false;
+                     continueBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }
+            });
+        })
+    </script>
+</body></html>

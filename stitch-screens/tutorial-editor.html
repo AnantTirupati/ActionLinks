@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tutorial Editor - Action Links</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#565e74",
+                        "on-surface": "#1a1c1c",
+                        "on-background": "#1a1c1c",
+                        "on-primary-container": "#dad7ff",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#3b495d",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#e2dfff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-tertiary-container": "#cedcf4",
+                        "on-surface-variant": "#464555",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-bright": "#f9f9f9",
+                        "secondary-container": "#dae2fd",
+                        "primary": "#3525cd",
+                        "surface-container": "#eeeeee",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "background": "#f9f9f9",
+                        "secondary-fixed": "#dae2fd",
+                        "outline": "#777587",
+                        "on-tertiary-fixed": "#0d1c2e",
+                        "surface": "#f9f9f9",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-tint": "#4d44e3",
+                        "surface-variant": "#e2e2e2",
+                        "on-tertiary-fixed-variant": "#3a485b",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "inverse-primary": "#c3c0ff",
+                        "surface-container-low": "#f3f3f3",
+                        "on-secondary-container": "#5c647a",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed-dim": "#b9c7df",
+                        "primary-container": "#4f46e5",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#2f3131",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#536176",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-dim": "#dadada",
+                        "error": "#ba1a1a",
+                        "tertiary-fixed": "#d5e3fc",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f0f1f1",
+                        "outline-variant": "#c7c4d8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xl": "32px",
+                        "max-width": "1280px",
+                        "base": "8px",
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "margin": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "display": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex flex-col overflow-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNav - Based on JSON but adapted for Editor context -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-gutter w-full h-16 bg-surface border-b border-[#E2E8F0] shrink-0">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">arrow_back</span>
+<nav aria-label="Breadcrumb" class="flex items-center gap-xs font-label-md text-label-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#">Library</a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">React</a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">Advanced Hooks</a>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-semibold">Editor</span>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<span class="font-body-md text-body-md text-on-surface-variant mr-4">Last saved 2m ago</span>
+<button class="font-label-md text-label-md px-4 py-2 text-on-surface-variant hover:text-primary transition-colors rounded-DEFAULT hover:bg-surface-container-low">Discard Changes</button>
+<button class="font-label-md text-label-md px-4 py-2 bg-surface text-on-surface border border-[#E2E8F0] hover:bg-surface-container-low transition-colors rounded-DEFAULT">Save</button>
+<button class="font-label-md text-label-md px-4 py-2 bg-primary-container text-on-primary border border-transparent hover:opacity-90 transition-opacity rounded-DEFAULT">Publish</button>
+<div class="h-8 w-px bg-[#E2E8F0] mx-2"></div>
+<img alt="User avatar" class="w-8 h-8 rounded-full border border-outline-variant object-cover" data-alt="A small, professional avatar of a software developer with a neutral expression, clean modern lighting, professional attire, isolated against a light gray background." src="/images/image_27.png"/>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Pane: Step List -->
+<aside class="w-64 border-r border-[#E2E8F0] bg-surface flex flex-col shrink-0 z-10 relative shadow-[1px_0_4px_rgba(0,0,0,0.02)]">
+<div class="p-md border-b border-[#E2E8F0] flex items-center justify-between">
+<h2 class="font-label-md text-label-md text-on-surface font-semibold uppercase tracking-wider text-on-surface-variant">Steps</h2>
+<span class="material-symbols-outlined text-outline-variant text-[18px]">format_list_bulleted</span>
+</div>
+<div class="flex-1 overflow-y-auto p-sm space-y-sm">
+<!-- Step 1 -->
+<div class="group flex items-center gap-sm p-2 rounded-lg bg-surface hover:bg-surface-container-low border border-transparent hover:border-[#E2E8F0] cursor-pointer transition-all">
+<span class="material-symbols-outlined text-outline-variant cursor-grab active:cursor-grabbing text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">drag_indicator</span>
+<div class="w-10 h-10 rounded-DEFAULT overflow-hidden shrink-0 border border-[#E2E8F0] bg-surface-container-lowest">
+<img alt="Step 1 thumbnail" class="w-full h-full object-cover" data-alt="A highly detailed, ultra-minimalist UI thumbnail showing a stylized web browser window focusing on a login button. Crisp lines, monochrome with subtle indigo highlights, vector illustration style, well-lit, professional SaaS design aesthetic." src="/images/image_28.png"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-on-surface truncate">Navigate to Login</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">0:00</p>
+</div>
+</div>
+<!-- Step 2 (Active) -->
+<div class="group flex items-center gap-sm p-2 rounded-lg bg-secondary-container border border-secondary-fixed-dim cursor-pointer transition-all shadow-sm">
+<span class="material-symbols-outlined text-on-secondary-container cursor-grab active:cursor-grabbing text-[16px]">drag_indicator</span>
+<div class="w-10 h-10 rounded-DEFAULT overflow-hidden shrink-0 border border-primary-fixed bg-surface-container-lowest">
+<img alt="Step 2 thumbnail" class="w-full h-full object-cover" data-alt="A highly detailed, ultra-minimalist UI thumbnail showing a stylized code editor highlighting a specific React hook implementation. Crisp lines, monochrome with subtle indigo highlights, vector illustration style, well-lit, professional SaaS design aesthetic." src="/images/image_29.png"/>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-on-secondary-fixed font-semibold truncate">Implement useEffect</p>
+<p class="font-label-sm text-label-sm text-on-secondary-container truncate">0:12</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="group flex items-center gap-sm p-2 rounded-lg bg-surface hover:bg-surface-container-low border border-transparent hover:border-[#E2E8F0] cursor-pointer transition-all">
+<span class="material-symbols-outlined text-outline-variant cursor-grab active:cursor-grabbing text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">drag_indicator</span>
+<div class="w-10 h-10 rounded-DEFAULT overflow-hidden shrink-0 border border-[#E2E8F0] bg-surface-container-lowest flex items-center justify-center">
+<span class="material-symbols-outlined text-outline-variant text-[20px]">terminal</span>
+</div>
+<div class="flex-1 min-w-0">
+<p class="font-label-md text-label-md text-on-surface truncate">Run tests</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">0:45</p>
+</div>
+</div>
+</div>
+<div class="p-md border-t border-[#E2E8F0]">
+<button class="w-full flex items-center justify-center gap-2 font-label-md text-label-md py-2 border border-dashed border-outline-variant text-on-surface-variant rounded-DEFAULT hover:border-primary hover:text-primary hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Add New Step
+                </button>
+</div>
+</aside>
+<!-- Middle Pane: Instruction Editor -->
+<section class="flex-1 flex flex-col min-w-[400px] border-r border-[#E2E8F0] bg-surface z-0">
+<div class="p-lg border-b border-[#E2E8F0] bg-surface-container-lowest">
+<input class="w-full font-headline-lg text-headline-lg text-on-surface bg-transparent border-none p-0 focus:ring-0 placeholder:text-outline-variant outline-none" type="text" value="Implement useEffect"/>
+</div>
+<div class="flex-1 overflow-y-auto p-lg space-y-xl bg-surface-bright">
+<!-- Action Type Selector -->
+<div class="space-y-sm">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold uppercase tracking-wide">Action Type</label>
+<div class="relative">
+<select class="w-full appearance-none font-body-md text-body-md bg-surface border border-[#E2E8F0] rounded-DEFAULT px-4 py-2 pr-10 focus:outline-none focus:ring-2 focus:ring-primary-container focus:ring-opacity-20 focus:border-primary transition-shadow text-on-surface cursor-pointer">
+<option>Click Element</option>
+<option>Input Text</option>
+<option selected="">Code Highlight</option>
+<option>Navigate URL</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Instruction Editor (Rich Text) -->
+<div class="space-y-sm flex-1 flex flex-col h-full min-h-[300px]">
+<div class="flex items-center justify-between">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-semibold uppercase tracking-wide">Instruction Details</label>
+<div class="flex gap-xs bg-surface-container p-1 rounded-DEFAULT">
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-[16px]">format_bold</span></button>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-[16px]">format_italic</span></button>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-[16px]">code</span></button>
+<button class="p-1 rounded hover:bg-surface-variant text-on-surface-variant transition-colors"><span class="material-symbols-outlined text-[16px]">link</span></button>
+</div>
+</div>
+<div class="flex-1 border border-[#E2E8F0] rounded-DEFAULT bg-surface focus-within:ring-2 focus-within:ring-primary-container focus-within:ring-opacity-20 focus-within:border-primary transition-shadow overflow-hidden flex flex-col">
+<textarea class="flex-1 w-full p-4 font-body-md text-body-md bg-transparent border-none resize-none focus:ring-0 outline-none text-on-surface" placeholder="Write step instructions here... Use Markdown for formatting.">Now, we need to handle the side effect of fetching data when the component mounts. 
+
+We will use the `useEffect` hook for this. Notice how we define the dependency array to ensure it only runs once.</textarea>
+</div>
+</div>
+</div>
+<!-- Bottom Bar for Editor Pane -->
+<div class="p-md border-t border-[#E2E8F0] bg-surface flex justify-between items-center shrink-0">
+<button class="font-label-md text-label-md text-error hover:text-on-error hover:bg-error px-4 py-2 rounded-DEFAULT transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+                    Delete Step
+                </button>
+<div class="text-on-surface-variant font-label-sm text-label-sm flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container inline-block"></span>
+                    Auto-saved
+                </div>
+</div>
+</section>
+<!-- Right Pane: Live Preview -->
+<section class="w-[45%] flex flex-col bg-surface-container-low z-0">
+<div class="p-md border-b border-[#E2E8F0] bg-surface flex items-center justify-between shrink-0">
+<h2 class="font-label-md text-label-md text-on-surface font-semibold">Live Preview</h2>
+<div class="flex gap-2">
+<button class="p-1.5 rounded-DEFAULT bg-surface-container-high text-on-surface hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined text-[18px]">desktop_windows</span></button>
+<button class="p-1.5 rounded-DEFAULT text-on-surface-variant hover:bg-surface-variant transition-colors"><span class="material-symbols-outlined text-[18px]">smartphone</span></button>
+</div>
+</div>
+<div class="flex-1 p-lg overflow-hidden flex items-center justify-center">
+<!-- Preview Frame (Browser Mockup) -->
+<div class="w-full max-w-2xl bg-surface rounded-lg shadow-lg border border-[#E2E8F0] overflow-hidden flex flex-col relative h-[600px]">
+<!-- Browser Chrome -->
+<div class="h-10 border-b border-[#E2E8F0] bg-surface-container-lowest flex items-center px-4 gap-2 shrink-0">
+<div class="flex gap-1.5">
+<div class="w-3 h-3 rounded-full bg-error-container border border-error/20"></div>
+<div class="w-3 h-3 rounded-full bg-[#fef08a] border border-[#ca8a04]/20"></div>
+<div class="w-3 h-3 rounded-full bg-[#bbf7d0] border border-[#16a34a]/20"></div>
+</div>
+<div class="mx-auto bg-surface-container-low border border-[#E2E8F0] rounded-full px-4 py-1 flex items-center gap-2 w-1/2 max-w-sm">
+<span class="material-symbols-outlined text-[14px] text-outline-variant">lock</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">localhost:3000/demo</span>
+</div>
+</div>
+<!-- Preview Content Area -->
+<div class="flex-1 relative bg-[#0f172a] overflow-hidden">
+<!-- Mock Code Editor Background -->
+<div class="absolute inset-0 p-6 font-mono text-sm text-[#94a3b8] whitespace-pre" style="line-height: 1.6;">
+import React, { useState, useEffect } from 'react';
+
+export default function UserProfile({ userId }) {
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+<span class="opacity-50">  // Fetch user data</span>
+<span class="text-[#38bdf8]">useEffect</span>(() =&gt; {
+    async function fetchData() {
+      const response = await fetch(`/api/users/${userId}`);
+      const data = await response.json();
+      setUserData(data);
+      setLoading(false);
+    }
+    fetchData();
+  }, [userId]);
+
+  if (loading) return &lt;div&gt;Loading...&lt;/div&gt;;
+  
+  return (
+    &lt;div className="profile-card"&gt;
+      &lt;h1&gt;{userData.name}&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+                        </div>
+<!-- Action Link Overlay Highlight -->
+<div class="absolute top-[148px] left-[20px] right-[20px] h-[160px] border-2 border-primary-container bg-primary-container/10 rounded pointer-events-none ring-4 ring-primary-container/20 animate-pulse"></div>
+<!-- Action Link Tooltip Component (Floating) -->
+<div class="absolute top-[320px] left-[40px] w-80 bg-surface rounded-lg shadow-xl border border-[#E2E8F0] p-4 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md font-semibold text-on-surface">Implement useEffect</h3>
+<span class="material-symbols-outlined text-outline-variant text-[16px] cursor-pointer hover:text-on-surface">close</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                                 Now, we need to handle the side effect of fetching data when the component mounts.
+                             </p>
+<div class="flex justify-between items-center mt-2 pt-3 border-t border-surface-variant">
+<span class="font-label-sm text-label-sm text-outline-variant">Step 2 of 5</span>
+<button class="font-label-sm text-label-sm bg-primary-container text-on-primary px-3 py-1.5 rounded hover:opacity-90 transition-opacity">Next</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</body></html>

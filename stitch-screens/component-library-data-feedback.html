@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Component Library - Data &amp; Feedback</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#dadada",
+                      "outline": "#777587",
+                      "inverse-on-surface": "#f0f1f1",
+                      "surface-container-highest": "#e2e2e2",
+                      "surface-container": "#eeeeee",
+                      "on-secondary-fixed": "#131b2e",
+                      "primary-fixed-dim": "#c3c0ff",
+                      "on-secondary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#d5e3fc",
+                      "surface": "#f9f9f9",
+                      "secondary-fixed": "#dae2fd",
+                      "surface-container-low": "#f3f3f3",
+                      "on-tertiary-fixed": "#0d1c2e",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-variant": "#e2e2e2",
+                      "on-error-container": "#93000a",
+                      "surface-tint": "#4d44e3",
+                      "primary-fixed": "#e2dfff",
+                      "on-tertiary-fixed-variant": "#3a485b",
+                      "inverse-primary": "#c3c0ff",
+                      "on-surface-variant": "#464555",
+                      "tertiary": "#3b495d",
+                      "secondary": "#565e74",
+                      "error-container": "#ffdad6",
+                      "tertiary-container": "#536176",
+                      "outline-variant": "#c7c4d8",
+                      "on-primary": "#ffffff",
+                      "on-background": "#1a1c1c",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#0f0069",
+                      "background": "#f9f9f9",
+                      "on-secondary-fixed-variant": "#3f465c",
+                      "on-tertiary-container": "#cedcf4",
+                      "secondary-container": "#dae2fd",
+                      "on-secondary-container": "#5c647a",
+                      "on-primary-container": "#dad7ff",
+                      "primary-container": "#4f46e5",
+                      "on-primary-fixed-variant": "#3323cc",
+                      "tertiary-fixed-dim": "#b9c7df",
+                      "inverse-surface": "#2f3131",
+                      "surface-container-high": "#e8e8e8",
+                      "surface-bright": "#f9f9f9",
+                      "secondary-fixed-dim": "#bec6e0",
+                      "primary": "#3525cd",
+                      "error": "#ba1a1a",
+                      "on-surface": "#1a1c1c"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "4px",
+                      "max-width": "1280px",
+                      "sm": "8px",
+                      "lg": "24px",
+                      "xl": "32px",
+                      "margin": "32px",
+                      "md": "16px",
+                      "gutter": "24px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "display": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "display": ["36px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #1a1c1c; }
+        .component-card { background: white; border: 1px solid #E2E8F0; border-radius: 12px; padding: 24px; }
+        .table-row-hover:hover { background-color: #F1F5F9; }
+    </style>
+</head>
+<body class="flex bg-background h-screen overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-on-background border-r border-outline-variant dark:border-outline docked left-0 h-full w-64 flex flex-col sticky top-0 p-md space-y-xs hidden md:flex shrink-0">
+<div class="mb-lg px-md">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface dark:text-inverse-on-surface flex items-center gap-sm">
+<img alt="Organization Logo" class="w-8 h-8 rounded" data-alt="A small, minimalist geometric logo graphic consisting of interlocking primary blue and neutral grey shapes on a white background, suitable for an enterprise SaaS application brand. The aesthetic is clean, sharp, and modern, conveying efficiency and precision." src="/images/image_14.png"/>
+                Action Links
+            </h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Enterprise SaaS</p>
+</div>
+<div class="flex-1 space-y-sm">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-label-sm text-label-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span> Home
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-label-sm text-label-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="account_tree">account_tree</span> Projects
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-label-sm text-label-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span> Automations
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-label-sm text-label-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span> Team
+            </a>
+<a class="flex items-center gap-md bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-lg px-md py-sm font-semibold hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-label-sm text-label-sm scale-[0.99] duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2" data-weight="fill" style="font-variation-settings: 'FILL' 1;">inventory_2</span> Library
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-label-sm text-label-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span> Settings
+            </a>
+</div>
+<div class="mt-auto space-y-sm pt-md border-t border-outline-variant">
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-label-sm text-label-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span> Support
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant dark:text-on-secondary-fixed-variant px-md py-sm hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all font-label-sm text-label-sm rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span> Documentation
+            </a>
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-sm rounded-md hover:opacity-90 transition-opacity mt-sm">Upgrade Plan</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-inverse-surface flex justify-between items-center px-lg py-sm w-full max-w-max-width mx-auto z-50 docked full-width top-0 border-b border-outline-variant dark:border-outline shrink-0 hidden md:flex">
+<div class="flex items-center gap-lg">
+<!-- Search (on_left configuration) -->
+<div class="relative w-64 hidden lg:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-xl pr-sm py-sm rounded-md border border-outline-variant focus:border-primary-container focus:ring-1 focus:ring-primary-container bg-surface text-on-surface font-body-md text-body-md placeholder-outline outline-none" placeholder="Search..." type="text"/>
+</div>
+<nav class="flex items-center gap-lg h-full">
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium pb-4 hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors font-label-md text-label-md mt-4" href="#">Dashboard</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium pb-4 hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors font-label-md text-label-md mt-4" href="#">Workflows</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium pb-4 hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors font-label-md text-label-md mt-4" href="#">Analytics</a>
+<a class="text-secondary dark:text-secondary-fixed-dim font-medium pb-4 hover:text-primary dark:hover:text-primary-fixed hover:bg-surface-container-low transition-colors font-label-md text-label-md mt-4" href="#">Integrations</a>
+<!-- Active state logically would be the Component Library context if it was listed, but we default to none active in this global nav given the prompt context is a sub-page of Library -->
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="bg-primary-container text-on-primary-container font-label-md text-label-md px-md py-sm rounded-md hover:opacity-90 transition-opacity">Create New</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-xs rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-xs rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-xs rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-outline-variant object-cover cursor-pointer" data-alt="A professional headshot of a business person against a neutral grey background, used as a user profile avatar in a web application. The lighting is soft and flattering, typical of corporate photography." src="/images/image_15.png"/>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-lg bg-surface">
+<div class="max-w-max-width mx-auto">
+<!-- Page Header & Breadcrumbs -->
+<div class="mb-xl">
+<nav aria-label="Breadcrumb" class="flex text-on-surface-variant font-body-md text-body-md mb-sm">
+<ol class="inline-flex items-center space-x-1 md:space-x-3">
+<li class="inline-flex items-center">
+<a class="inline-flex items-center hover:text-primary transition-colors" href="#">
+                                    Library
+                                </a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-sm mx-1" data-icon="chevron_right">chevron_right</span>
+<a class="hover:text-primary transition-colors ml-1 md:ml-2" href="#">Components</a>
+</div>
+</li>
+<li aria-current="page">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-sm mx-1" data-icon="chevron_right">chevron_right</span>
+<span class="text-on-surface font-medium ml-1 md:ml-2">Data &amp; Feedback</span>
+</div>
+</li>
+</ol>
+</nav>
+<h2 class="font-display text-display text-on-surface">Data &amp; Feedback Components</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-xs">A comprehensive collection of UI elements for presenting data and providing system feedback.</p>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-lg">
+<!-- Left Column: Data Table (Spans 2 cols) -->
+<div class="xl:col-span-2 space-y-lg">
+<!-- Data Table Component -->
+<div class="component-card shadow-sm">
+<div class="flex justify-between items-center mb-md border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Data Table</h3>
+<div class="flex gap-sm">
+<button class="flex items-center gap-xs px-sm py-xs border border-outline-variant rounded text-on-surface font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_list">filter_list</span> Filter
+                                    </button>
+<button class="flex items-center gap-xs px-sm py-xs border border-outline-variant rounded text-on-surface font-label-sm text-label-sm hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="download">download</span> Export
+                                    </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-lowest">
+<th class="p-sm w-12 text-center">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+</th>
+<th class="p-sm font-label-sm text-label-sm text-on-surface-variant group cursor-pointer">
+<div class="flex items-center gap-xs hover:text-primary">
+                                                    Project Name
+                                                    <span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100 transition-opacity" data-icon="arrow_downward">arrow_downward</span>
+</div>
+</th>
+<th class="p-sm font-label-sm text-label-sm text-on-surface-variant">Status</th>
+<th class="p-sm font-label-sm text-label-sm text-on-surface-variant group cursor-pointer">
+<div class="flex items-center gap-xs hover:text-primary">
+                                                    Last Updated
+                                                    <span class="material-symbols-outlined text-[16px] text-primary" data-icon="arrow_upward">arrow_upward</span>
+</div>
+</th>
+<th class="p-sm font-label-sm text-label-sm text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="border-b border-outline-variant table-row-hover transition-colors">
+<td class="p-sm text-center">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="p-sm font-medium">Alpha Analytics Engine</td>
+<td class="p-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#D1FAE5] text-[#065F46]">Active</span>
+</td>
+<td class="p-sm text-on-surface-variant">Oct 24, 2023</td>
+<td class="p-sm text-right">
+<button class="text-on-surface-variant hover:text-primary p-xs rounded hover:bg-surface-container"><span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant table-row-hover transition-colors bg-secondary-container/10">
+<td class="p-sm text-center">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="p-sm font-medium">Beta Integration API</td>
+<td class="p-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#FEF3C7] text-[#92400E]">Pending</span>
+</td>
+<td class="p-sm text-on-surface-variant">Oct 22, 2023</td>
+<td class="p-sm text-right">
+<button class="text-on-surface-variant hover:text-primary p-xs rounded hover:bg-surface-container"><span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+<tr class="border-b border-outline-variant table-row-hover transition-colors">
+<td class="p-sm text-center">
+<input class="rounded border-outline-variant text-primary-container focus:ring-primary-container" type="checkbox"/>
+</td>
+<td class="p-sm font-medium">Gamma Data Migration</td>
+<td class="p-sm">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[#F3F4F6] text-[#374151]">Draft</span>
+</td>
+<td class="p-sm text-on-surface-variant">Oct 15, 2023</td>
+<td class="p-sm text-right">
+<button class="text-on-surface-variant hover:text-primary p-xs rounded hover:bg-surface-container"><span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between border-t border-outline-variant pt-sm mt-sm">
+<div class="font-body-md text-body-md text-on-surface-variant">
+                                    Showing <span class="font-medium text-on-surface">1</span> to <span class="font-medium text-on-surface">3</span> of <span class="font-medium text-on-surface">12</span> results
+                                </div>
+<div class="flex items-center gap-xs">
+<button class="p-xs border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded bg-primary-container text-on-primary-container font-label-md text-label-md">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-container">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant text-on-surface font-label-md text-label-md hover:bg-surface-container">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="p-xs border border-outline-variant rounded text-on-surface-variant hover:bg-surface-container">
+<span class="material-symbols-outlined text-[20px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Tabs Component -->
+<div class="component-card shadow-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Tabs (Underlined)</h3>
+<div class="border-b border-outline-variant">
+<nav aria-label="Tabs" class="-mb-px flex space-x-lg">
+<a aria-current="page" class="border-primary text-primary whitespace-nowrap py-sm px-xs border-b-2 font-label-md text-label-md font-medium" href="#">
+                                        Overview
+                                    </a>
+<a class="border-transparent text-on-surface-variant hover:text-on-surface hover:border-outline whitespace-nowrap py-sm px-xs border-b-2 font-label-md text-label-md font-medium transition-colors" href="#">
+                                        Configuration
+                                    </a>
+<a class="border-transparent text-on-surface-variant hover:text-on-surface hover:border-outline whitespace-nowrap py-sm px-xs border-b-2 font-label-md text-label-md font-medium transition-colors" href="#">
+                                        Permissions
+                                    </a>
+<a class="border-transparent text-on-surface-variant hover:text-on-surface hover:border-outline whitespace-nowrap py-sm px-xs border-b-2 font-label-md text-label-md font-medium transition-colors" href="#">
+                                        Audit Log
+                                    </a>
+</nav>
+</div>
+<div class="p-md mt-sm bg-surface-container-lowest rounded border border-dashed border-outline-variant">
+<p class="font-body-md text-body-md text-on-surface-variant">Tab panel content area. Use this for switching contexts within a single view without navigating away.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Feedback & Overlays (Spans 1 col) -->
+<div class="space-y-lg">
+<!-- Toast Notifications -->
+<div class="component-card shadow-sm bg-surface-container-low">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Toast Notifications</h3>
+<div class="space-y-sm">
+<!-- Success Toast -->
+<div class="bg-surface-container-lowest border border-[#10B981] rounded-lg p-sm flex items-start gap-sm shadow-[0_4px_6px_-1px_rgb(0,0,0,0.1)]">
+<span class="material-symbols-outlined text-[#10B981]" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Changes Saved</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Your configuration has been updated successfully.</p>
+</div>
+<button class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[16px]" data-icon="close">close</span></button>
+</div>
+<!-- Error Toast -->
+<div class="bg-surface-container-lowest border border-[#EF4444] rounded-lg p-sm flex items-start gap-sm shadow-[0_4px_6px_-1px_rgb(0,0,0,0.1)]">
+<span class="material-symbols-outlined text-[#EF4444]" data-icon="error" data-weight="fill" style="font-variation-settings: 'FILL' 1;">error</span>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Connection Failed</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">Unable to reach the database server. Retrying...</p>
+</div>
+<button class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[16px]" data-icon="close">close</span></button>
+</div>
+<!-- Info Toast -->
+<div class="bg-surface-container-lowest border border-primary-container rounded-lg p-sm flex items-start gap-sm shadow-[0_4px_6px_-1px_rgb(0,0,0,0.1)]">
+<span class="material-symbols-outlined text-primary-container" data-icon="info" data-weight="fill" style="font-variation-settings: 'FILL' 1;">info</span>
+<div class="flex-1">
+<h4 class="font-label-md text-label-md text-on-surface font-semibold">Update Available</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">A new version of the client is ready to install.</p>
+<button class="mt-2 text-primary font-label-sm text-label-sm font-semibold hover:underline">Update Now</button>
+</div>
+<button class="text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[16px]" data-icon="close">close</span></button>
+</div>
+</div>
+</div>
+<!-- Tooltips & Badges -->
+<div class="component-card shadow-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Contextual Elements</h3>
+<div class="space-y-md">
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-sm uppercase tracking-wider">Tooltips</h4>
+<div class="flex items-center gap-lg">
+<div class="relative group inline-block">
+<button class="p-xs bg-surface-container rounded border border-outline-variant hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface" data-icon="help_outline">help_outline</span>
+</button>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max px-sm py-xs bg-on-surface text-surface text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 font-label-sm text-label-sm">
+                                                Need help with this setting?
+                                                <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-px border-4 border-transparent border-t-on-surface"></div>
+</div>
+</div>
+<div class="relative group inline-block">
+<span class="border-b border-dashed border-outline-variant font-body-md text-body-md cursor-help pb-0.5">Hover for definition</span>
+<div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 px-sm py-xs bg-on-surface text-surface text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 font-body-sm text-center shadow-lg">
+                                                A brief explanation of a complex term within the UI.
+                                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 -mb-px border-4 border-transparent border-b-on-surface"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-sm border-t border-outline-variant">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant mb-sm uppercase tracking-wider">Status Badges</h4>
+<div class="flex flex-wrap gap-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#F3F4F6] text-[#374151] border border-[#E5E7EB]">Neutral</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#DBEAFE] text-[#1E40AF] border border-[#BFDBFE]">Info</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#D1FAE5] text-[#065F46] border border-[#A7F3D0]">Success</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A]">Warning</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#FEE2E2] text-[#B91C1C] border border-[#FECACA]">Critical</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

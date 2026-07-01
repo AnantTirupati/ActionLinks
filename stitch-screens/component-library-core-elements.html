@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Core Elements - Component Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#dadada",
+                        "outline": "#777587",
+                        "inverse-on-surface": "#f0f1f1",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-container": "#eeeeee",
+                        "on-secondary-fixed": "#131b2e",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#d5e3fc",
+                        "surface": "#f9f9f9",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container-low": "#f3f3f3",
+                        "on-tertiary-fixed": "#0d1c2e",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e2e2e2",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4d44e3",
+                        "primary-fixed": "#e2dfff",
+                        "on-tertiary-fixed-variant": "#3a485b",
+                        "inverse-primary": "#c3c0ff",
+                        "on-surface-variant": "#464555",
+                        "tertiary": "#3b495d",
+                        "secondary": "#565e74",
+                        "error-container": "#ffdad6",
+                        "tertiary-container": "#536176",
+                        "outline-variant": "#c7c4d8",
+                        "on-primary": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed": "#0f0069",
+                        "background": "#f9f9f9",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "on-tertiary-container": "#cedcf4",
+                        "secondary-container": "#dae2fd",
+                        "on-secondary-container": "#5c647a",
+                        "on-primary-container": "#dad7ff",
+                        "primary-container": "#4f46e5",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "tertiary-fixed-dim": "#b9c7df",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-bright": "#f9f9f9",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "primary": "#3525cd",
+                        "error": "#ba1a1a",
+                        "on-surface": "#1a1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "max-width": "1280px",
+                        "sm": "8px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "margin": "32px",
+                        "md": "16px",
+                        "gutter": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display": ["36px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #FAFAFA; color: #1a1c1c; }
+    </style>
+</head>
+<body class="flex min-h-screen bg-background overflow-hidden">
+<!-- SideNavBar (Shared Component) -->
+<aside class="docked left-0 h-full w-64 border-r border-outline-variant bg-surface hidden md:flex flex-col flex-shrink-0 z-40 sticky top-0 p-md space-y-xs">
+<div class="px-md py-lg">
+<h1 class="font-headline-md text-headline-md font-bold text-on-surface">Action Links</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Enterprise SaaS</p>
+</div>
+<nav class="flex-1 space-y-xs mt-sm">
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+                Home
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_tree</span>
+                Projects
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bolt</span>
+                Automations
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">group</span>
+                Team
+            </a>
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-lg px-md py-sm font-semibold opacity-80 duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+                Library
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="mt-auto space-y-xs pt-md border-t border-outline-variant">
+<button class="w-full flex items-center justify-center gap-sm bg-primary-container text-on-primary font-label-md text-label-md px-md py-sm rounded-lg hover:opacity-90 transition-opacity">
+                Upgrade Plan
+            </button>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md mt-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">contact_support</span>
+                Support
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-high transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu_book</span>
+                Documentation
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col h-screen overflow-hidden">
+<!-- TopNavBar (Shared Component) -->
+<header class="docked full-width top-0 bg-surface-container-lowest border-b border-outline-variant z-50 flex-shrink-0">
+<div class="flex justify-between items-center px-lg py-sm w-full max-w-max-width mx-auto z-50">
+<div class="flex items-center gap-lg">
+<!-- Mobile Menu Button (Hidden on Desktop) -->
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Search Bar -->
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="pl-xl pr-md py-sm rounded-md border border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none font-body-md text-body-md w-64 text-on-surface" placeholder="Search..." type="text"/>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-lg h-full pt-sm">
+<a class="text-secondary font-medium pb-4 hover:text-primary transition-colors font-label-md text-label-md" href="#">Dashboard</a>
+<a class="text-secondary font-medium pb-4 hover:text-primary transition-colors font-label-md text-label-md" href="#">Workflows</a>
+<a class="text-secondary font-medium pb-4 hover:text-primary transition-colors font-label-md text-label-md" href="#">Analytics</a>
+<a class="text-secondary font-medium pb-4 hover:text-primary transition-colors font-label-md text-label-md" href="#">Integrations</a>
+</nav>
+<div class="flex items-center gap-md">
+<button class="hidden lg:flex items-center gap-xs bg-primary-container text-on-primary px-md py-sm rounded-md font-label-md text-label-md hover:opacity-90 transition-opacity">
+                        Create New
+                    </button>
+<div class="flex items-center gap-xs">
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-xs text-on-surface-variant hover:text-primary hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant ml-sm">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A close up professional headshot of a user profile picture, minimalist lighting, neutral background, high key white aesthetic, professional and modern" src="/images/image_13.png"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Scrollable Canvas -->
+<main class="flex-1 overflow-y-auto p-md md:p-lg bg-background">
+<div class="max-w-max-width mx-auto">
+<header class="mb-xl">
+<h2 class="font-display text-display text-on-surface">Core Elements</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-sm">Foundational UI components, states, and interactive primitives for Action Links.</p>
+</header>
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-gutter">
+<!-- Buttons Section -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm">
+<div class="mb-lg border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Buttons</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Primary actions and navigational triggers.</p>
+</div>
+<div class="space-y-lg">
+<!-- Primary -->
+<div>
+<h4 class="font-label-sm text-label-sm text-outline mb-sm uppercase tracking-wider">Primary</h4>
+<div class="flex flex-wrap gap-md items-end">
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center">Default</span>
+<button class="bg-primary-container text-on-primary px-md py-sm rounded-md font-label-md text-label-md border border-transparent hover:opacity-90 transition-opacity">Primary Button</button>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center">Hover</span>
+<button class="bg-primary-container opacity-90 text-on-primary px-md py-sm rounded-md font-label-md text-label-md border border-transparent">Primary Button</button>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center">Disabled</span>
+<button class="bg-surface-variant text-on-surface-variant px-md py-sm rounded-md font-label-md text-label-md border border-transparent opacity-50 cursor-not-allowed" disabled="">Primary Button</button>
+</div>
+</div>
+</div>
+<!-- Secondary -->
+<div>
+<h4 class="font-label-sm text-label-sm text-outline mb-sm uppercase tracking-wider">Secondary</h4>
+<div class="flex flex-wrap gap-md items-end">
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center">Default</span>
+<button class="bg-surface-container-lowest text-on-surface px-md py-sm rounded-md font-label-md text-label-md border border-outline-variant hover:bg-surface-container-low transition-colors">Secondary Button</button>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center">Hover</span>
+<button class="bg-surface-container-low text-on-surface px-md py-sm rounded-md font-label-md text-label-md border border-outline-variant">Secondary Button</button>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center">With Icon</span>
+<button class="bg-surface-container-lowest text-on-surface px-md py-sm rounded-md font-label-md text-label-md border border-outline-variant hover:bg-surface-container-low transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                            New Item
+                                        </button>
+</div>
+</div>
+</div>
+<!-- Ghost / Text -->
+<div>
+<h4 class="font-label-sm text-label-sm text-outline mb-sm uppercase tracking-wider">Ghost</h4>
+<div class="flex flex-wrap gap-md items-end">
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center">Default</span>
+<button class="bg-transparent text-primary px-md py-sm rounded-md font-label-md text-label-md hover:bg-surface-container-low transition-colors">Ghost Button</button>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant text-center">Danger</span>
+<button class="bg-transparent text-error px-md py-sm rounded-md font-label-md text-label-md hover:bg-error-container hover:text-on-error-container transition-colors">Delete Action</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Inputs Section -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm">
+<div class="mb-lg border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Inputs</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Text entry and data collection.</p>
+</div>
+<div class="space-y-lg">
+<!-- Text Input -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Email Address</label>
+<input class="w-full px-md py-sm rounded-md border border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none font-body-md text-body-md text-on-surface" placeholder="name@company.com" type="email"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-xs block">Default State</span>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Workspace Name</label>
+<input class="w-full px-md py-sm rounded-md border border-primary bg-surface ring-1 ring-primary focus:outline-none font-body-md text-body-md text-on-surface" type="text" value="Acme Corp"/>
+<span class="font-label-sm text-label-sm text-primary mt-xs block">Focused State</span>
+</div>
+</div>
+<!-- Error & Success -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Password</label>
+<input class="w-full px-md py-sm rounded-md border border-error bg-surface focus:outline-none font-body-md text-body-md text-on-surface" type="password" value="secret"/>
+<span class="font-label-sm text-label-sm text-error mt-xs block flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">error</span>
+                                        Password is too short.
+                                    </span>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Username</label>
+<div class="relative">
+<input class="w-full px-md py-sm rounded-md border border-outline-variant bg-surface-variant text-on-surface-variant focus:outline-none font-body-md text-body-md" disabled="" type="text" value="johndoe88"/>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant mt-xs block">Disabled State</span>
+</div>
+</div>
+<!-- Search Input -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Search Employees</label>
+<div class="relative max-w-sm">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-xl pr-md py-sm rounded-md border border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none font-body-md text-body-md text-on-surface" placeholder="Search by name or ID..." type="text"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Dropdowns & Selects Section -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm">
+<div class="mb-lg border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Selects &amp; Menus</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Contextual actions and option lists.</p>
+</div>
+<div class="space-y-lg">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<!-- Standard Select -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Role</label>
+<div class="relative">
+<select class="w-full px-md py-sm rounded-md border border-outline-variant bg-surface focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none font-body-md text-body-md text-on-surface appearance-none cursor-pointer">
+<option>Admin</option>
+<option>Editor</option>
+<option>Viewer</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Action Menu (Simulated Dropdown) -->
+<div class="relative">
+<label class="block font-label-md text-label-md text-on-surface mb-xs">Action Menu Open</label>
+<button class="w-full px-md py-sm rounded-md border border-outline-variant bg-surface-container-lowest text-on-surface font-body-md text-body-md flex justify-between items-center hover:bg-surface-container-low">
+                                        Options
+                                        <span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+<!-- Simulated Dropdown Panel -->
+<div class="absolute top-full left-0 mt-xs w-full bg-surface-container-lowest border border-outline-variant rounded-md shadow-lg z-10 py-xs">
+<button class="w-full text-left px-md py-sm hover:bg-surface-container-low font-body-md text-body-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">edit</span> Edit
+                                        </button>
+<button class="w-full text-left px-md py-sm hover:bg-surface-container-low font-body-md text-body-md text-on-surface flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">content_copy</span> Duplicate
+                                        </button>
+<div class="border-t border-outline-variant my-xs"></div>
+<button class="w-full text-left px-md py-sm hover:bg-error-container text-error font-body-md text-body-md flex items-center gap-sm">
+<span class="material-symbols-outlined text-[18px]">delete</span> Delete
+                                        </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Badges & Chips Section -->
+<section class="bg-surface-container-lowest rounded-xl border border-outline-variant p-lg shadow-sm">
+<div class="mb-lg border-b border-outline-variant pb-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Badges &amp; Indicators</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Status communication and categorization.</p>
+</div>
+<div class="space-y-lg">
+<!-- Status Badges -->
+<div>
+<h4 class="font-label-sm text-label-sm text-outline mb-sm uppercase tracking-wider">Status Badges (Pill)</h4>
+<div class="flex flex-wrap gap-sm">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-container-high text-on-surface">Neutral</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#D1FAE5] text-[#065F46]">Success</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#FEF3C7] text-[#92400E]">Warning</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-error-container text-on-error-container">Error</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-primary-container text-on-primary">Primary Info</span>
+</div>
+</div>
+<!-- Small Badges / Counts -->
+<div>
+<h4 class="font-label-sm text-label-sm text-outline mb-sm uppercase tracking-wider">Counts &amp; Micro-indicators</h4>
+<div class="flex flex-wrap gap-lg items-center">
+<div class="relative">
+<span class="material-symbols-outlined text-[24px] text-on-surface-variant">mail</span>
+<span class="absolute -top-1 -right-1 inline-flex items-center justify-center w-4 h-4 rounded-full bg-error text-on-error text-[10px] font-bold">3</span>
+</div>
+<div class="flex items-center gap-sm px-sm py-xs border border-outline-variant rounded-md bg-surface">
+<span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+<span class="font-label-sm text-label-sm text-on-surface">System Operational</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</body></html>
