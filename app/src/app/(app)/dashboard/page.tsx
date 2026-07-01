@@ -111,12 +111,12 @@ export default function DashboardPage() {
 
           return {
             id: `act-${idx}`,
-            type: isFinished ? "complete" : "progress",
+            type: isFinished ? "module_completed" : "tutorial_created",
             user: {
               name: name,
               avatar: user?.user_metadata?.avatar_url || "",
             },
-            message: isFinished
+            description: isFinished
               ? `Completed "${title}"`
               : `Step ${p.current_step} of "${title}"`,
             timestamp: new Date(p.updated_at).toLocaleDateString(undefined, {
