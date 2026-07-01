@@ -81,6 +81,8 @@ export async function GET(
       id: tutorial.id,
       title: tutorial.title,
       description: tutorial.description,
+      domain: tutorial.domain || "",
+      urlPattern: tutorial.url_pattern || "",
       difficulty: "Beginner",
       estimatedTime: (steps || []).length * 2,
       progress: {
@@ -94,6 +96,7 @@ export async function GET(
         instruction: s.instruction || "",
         action_type: s.action_type || "click",
         selector: s.selector || "",
+        url: s.url || "",
         metadata: s.metadata || {}
       }))
     },

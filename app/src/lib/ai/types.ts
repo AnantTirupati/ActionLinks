@@ -6,8 +6,9 @@ import { z } from "zod";
 export const AIStepSchema = z.object({
   title: z.string().min(1, "Step title cannot be empty"),
   instruction: z.string().min(1, "Step instruction cannot be empty"),
-  actionType: z.enum(["click", "input", "code_highlight", "navigate"]),
+  actionType: z.enum(["click", "input", "hover", "select", "wait", "navigate", "code_highlight"]),
   selector: z.string().default(""),
+  url: z.string().default(""),
   metadata: z.record(z.string(), z.any()).default({}),
 });
 
@@ -19,6 +20,8 @@ export const AITutorialSchema = z.object({
   description: z.string().default(""),
   estimatedTime: z.number().default(5),
   difficulty: z.enum(["Beginner", "Intermediate", "Advanced"]).default("Beginner"),
+  domain: z.string().default(""),
+  urlPattern: z.string().default(""),
   steps: z.array(AIStepSchema),
 });
 

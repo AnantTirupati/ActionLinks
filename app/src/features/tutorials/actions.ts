@@ -343,6 +343,7 @@ export async function generateAITutorial(tutorialId: string) {
       instruction: step.instruction,
       selector: step.selector || "",
       action_type: step.actionType,
+      url: step.url || "",
       metadata: (step.metadata || {}) as any,
     }));
 
@@ -360,6 +361,8 @@ export async function generateAITutorial(tutorialId: string) {
       .update({
         title: generated.title || tutorial.title,
         description: generated.description || tutorial.description,
+        domain: generated.domain || tutorial.domain || "",
+        url_pattern: generated.urlPattern || tutorial.url_pattern || "",
         status: "ready",
         prompt_version: "1.0",
         ai_model: "gemini-2.5-flash",

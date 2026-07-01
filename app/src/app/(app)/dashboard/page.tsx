@@ -25,6 +25,11 @@ export default function DashboardPage() {
   const [dbTutorials, setDbTutorials] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const [startedCount, setStartedCount] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
+  const [continueTutorial, setContinueTutorial] = useState<any>(null);
+  const [activities, setActivities] = useState<any[]>([]);
+
   useEffect(() => {
     async function loadUser() {
       const {
@@ -63,6 +68,80 @@ export default function DashboardPage() {
     });
   }, [dbTutorials]);
 
+  // Load progress details and activities in realtime
+  useEffect(() => {
+    async function loadProgressStats() {
+      if (!user) return;
+      
+      const { data: progressList } = await supabase
+        .from("tutorial_progress")
+        .select("*")
+        .eq("user_id", user.id);
+      
+      if (progressList) {
+        setStartedCount(progressList.length);
+        const completed = progressList.filter((p) => p.completed_at !== null).length;
+        setCompletedCount(completed);
+
+        // Find the most recently updated tutorial progress
+        const latestProgress = [...progressList].sort(
+          (a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+        )[0];
+
+        if (latestProgress) {
+          const match = tutorials.find((t) => t.id === latestProgress.tutorial_id);
+          if (match) {
+            const stepsCount = match.steps.length;
+            const completedStepsCount = Array.isArray(latestProgress.completed_steps)
+              ? latestProgress.completed_steps.length
+              : 0;
+            const percentage = stepsCount > 0 ? Math.round((completedStepsCount / stepsCount) * 100) : 0;
+
+            setContinueTutorial({
+              ...match,
+              progress: percentage,
+              duration: `${match.steps.length * 2} min total`,
+            });
+          }
+        }
+
+        // Generate activities
+        const sortedProgress = [...progressList]
+          .sort((a, b) => new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime())
+          .slice(0, 5);
+
+        const items = sortedProgress.map((p, idx) => {
+          const match = tutorials.find((t) => t.id === p.tutorial_id);
+          const title = match ? match.title : "Walkthrough Guide";
+          const isFinished = p.completed_at !== null;
+
+          return {
+            id: `act-${idx}`,
+            type: isFinished ? "complete" : "progress",
+            user: {
+              name: name,
+              avatar: "",
+            },
+            message: isFinished
+              ? `completed the tutorial: "${title}"`
+              : `advanced to Step ${p.current_step} of "${title}"`,
+            timestamp: new Date(p.updated_at).toLocaleDateString(undefined, {
+              month: "short",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+          };
+        });
+        setActivities(items);
+      }
+    }
+
+    if (user && tutorials.length > 0) {
+      loadProgressStats();
+    }
+  }, [user, tutorials, name]);
+
   const activeCount = tutorials.length.toString();
 
   const dynamicStats = useMemo(() => {
@@ -74,19 +153,19 @@ export default function DashboardPage() {
         colorClass: "text-primary",
       },
       {
-        icon: "Clock",
-        label: "Hours Saved",
-        value: (dbTutorials.length * 2.5).toFixed(0),
+        icon: "Play",
+        label: "Started Guides",
+        value: startedCount.toString(),
         colorClass: "text-tertiary",
       },
       {
-        icon: "Users",
-        label: "Team Members",
-        value: "1",
+        icon: "CheckCircle",
+        label: "Completed Guides",
+        value: completedCount.toString(),
         colorClass: "text-secondary",
       },
     ];
-  }, [activeCount, dbTutorials.length]);
+  }, [activeCount, startedCount, completedCount]);
 
   const latestTutorial = tutorials[0] || null;
   const recentList = tutorials.slice(0, 3);
@@ -114,8 +193,9 @@ export default function DashboardPage() {
     );
   }
 
-  const continueTutorial = latestTutorial || defaultContinue;
+  const continueTutorialDisplay = continueTutorial || latestTutorial || defaultContinue;
   const recentDisplayList = recentList.length > 0 ? recentList : defaultRecents;
+  const activityDisplayItems = activities.length > 0 ? activities : activityFeedItems;
 
   return (
     <AppShell breadcrumbs={breadcrumbs}>
@@ -152,10 +232,10 @@ export default function DashboardPage() {
           <div className="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col md:flex-row gap-6 relative overflow-hidden shadow-sm">
             {/* Thumbnail */}
             <div className="relative w-full md:w-48 h-32 bg-surface-container-low rounded-lg overflow-hidden shrink-0 group">
-              {continueTutorial.image && (
+              {continueTutorialDisplay.image && (
                 <Image
-                  src={continueTutorial.image}
-                  alt={continueTutorial.title}
+                  src={continueTutorialDisplay.image}
+                  alt={continueTutorialDisplay.title}
                   fill
                   className="object-cover"
                 />
@@ -174,20 +254,20 @@ export default function DashboardPage() {
                   Continue Learning
                 </span>
                 <h3 className="text-headline-md font-semibold text-on-surface mt-1">
-                  {continueTutorial.title}
+                  {continueTutorialDisplay.title}
                 </h3>
                 <p className="text-body-md text-on-surface-variant mt-1">
-                  {continueTutorial.description}
+                  {continueTutorialDisplay.description}
                 </p>
               </div>
 
               {/* Progress */}
               <div className="mt-4">
                 <div className="flex justify-between items-center text-label-sm text-on-surface-variant mb-2">
-                  <span>Progress: {continueTutorial.progress || 0}%</span>
-                  <span>{continueTutorial.duration}</span>
+                  <span>Progress: {continueTutorialDisplay.progress || 0}%</span>
+                  <span>{continueTutorialDisplay.duration}</span>
                 </div>
-                <ProgressBar value={continueTutorial.progress || 0} />
+                <ProgressBar value={continueTutorialDisplay.progress || 0} />
               </div>
             </div>
           </div>
@@ -217,7 +297,7 @@ export default function DashboardPage() {
 
         {/* Right Column: Activity Feed */}
         <div className="h-fit">
-          <ActivityFeed items={activityFeedItems} />
+          <ActivityFeed items={activityDisplayItems} />
         </div>
       </div>
     </AppShell>

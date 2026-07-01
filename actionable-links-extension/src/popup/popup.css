@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  width: 360px;
+  height: 480px;
+  overflow: hidden;
+  background-color: #09090b;
+}

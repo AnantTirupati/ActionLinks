@@ -63,6 +63,7 @@ export type Database = {
           step_number: number
           title: string
           tutorial_id: string
+          url: string | null
         }
         Insert: {
           action_type?: string | null
@@ -73,6 +74,7 @@ export type Database = {
           step_number: number
           title: string
           tutorial_id: string
+          url?: string | null
         }
         Update: {
           action_type?: string | null
@@ -83,6 +85,7 @@ export type Database = {
           step_number?: number
           title?: string
           tutorial_id?: string
+          url?: string | null
         }
         Relationships: [
           {
@@ -99,6 +102,7 @@ export type Database = {
           ai_model: string | null
           created_at: string
           description: string
+          domain: string | null
           id: string
           prompt_version: string | null
           source_type: string
@@ -107,6 +111,7 @@ export type Database = {
           thumbnail_url: string | null
           title: string
           updated_at: string
+          url_pattern: string | null
           user_id: string
           visibility: string
         }
@@ -114,6 +119,7 @@ export type Database = {
           ai_model?: string | null
           created_at?: string
           description: string
+          domain?: string | null
           id?: string
           prompt_version?: string | null
           source_type: string
@@ -122,6 +128,7 @@ export type Database = {
           thumbnail_url?: string | null
           title: string
           updated_at?: string
+          url_pattern?: string | null
           user_id?: string
           visibility?: string
         }
@@ -129,6 +136,7 @@ export type Database = {
           ai_model?: string | null
           created_at?: string
           description?: string
+          domain?: string | null
           id?: string
           prompt_version?: string | null
           source_type?: string
@@ -137,6 +145,7 @@ export type Database = {
           thumbnail_url?: string | null
           title?: string
           updated_at?: string
+          url_pattern?: string | null
           user_id?: string
           visibility?: string
         }

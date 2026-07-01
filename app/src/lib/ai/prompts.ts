@@ -11,12 +11,15 @@ The JSON structure MUST follow this exact schema:
   "description": "Short summary of what this guide teaches",
   "estimatedTime": 5, // Estimated duration in minutes (integer)
   "difficulty": "Beginner", // Must be one of: "Beginner", "Intermediate", "Advanced"
+  "domain": "github.com", // Inferred website domain name (e.g., github.com)
+  "urlPattern": "https://github.com/*", // Inferred URL pattern with wildcards
   "steps": [
     {
       "title": "Step action name",
-      "instruction": "Detailed, markdown-formatted instructions guiding the user on how to complete the step.",
-      "actionType": "click", // Must be one of: "click", "input", "code_highlight", "navigate"
-      "selector": "CSS selector to highlight (e.g. '#submit-btn', 'button.submit', 'code.language-js', or empty string if not applicable)",
+      "instruction": "Detailed instructions guiding the user on how to complete the step.",
+      "actionType": "click", // Must be one of: "click", "input", "hover", "select", "wait", "navigate", "code_highlight"
+      "selector": "", // Do not attempt to guess or automatically generate selectors. ALWAYS leave this field empty ""
+      "url": "https://github.com/", // Specific web URL where this step takes place
       "metadata": {} // Additional metadata if needed
     }
   ]
@@ -25,11 +28,9 @@ The JSON structure MUST follow this exact schema:
 Instructions guidelines:
 - Use clear, actionable instructions.
 - Keep descriptions concise and simple to read.
-- Choose correct action types:
-  - Use 'code_highlight' for steps involving code inspection or writing.
-  - Use 'click' for clicking UI elements.
-  - Use 'input' for typing text into forms.
-  - Use 'navigate' for loading dynamic sections or routes.
+- Ignore sponsor messages, intros, and unrelated content.
+- Merge repetitive actions to keep steps concise.
+- Set selector to "" by default.
 `;
 
 export function getYoutubePrompt(title: string, url: string): string {

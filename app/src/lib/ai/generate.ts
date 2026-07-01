@@ -3,6 +3,7 @@ import { parseAITutorial } from "./parser";
 import { AITutorial } from "./types";
 import { logger } from "@/lib/logger";
 import { fetchWebsiteMetadata } from "./utils";
+import { fetchYoutubeMetadata } from "./youtube";
 
 /**
  * Main orchestration entrypoint to generate structured tutorial JSON using Google Gemini 2.5 Flash.
@@ -22,11 +23,27 @@ export async function generateTutorialFromSource(
   let userPrompt = "";
 
   if (sourceType === "youtube") {
-    // Infer title from URL or use a default
-    const title = sourceUrl.includes("watch?v=") 
-      ? `Guide to Youtube content: ${sourceUrl.split("watch?v=")[1].substring(0, 6)}`
-      : "YouTube Video Resource";
-    userPrompt = getYoutubePrompt(title, sourceUrl);
+    try {
+      const meta = await fetchYoutubeMetadata(sourceUrl);
+      userPrompt = `
+Create a step-by-step interactive tutorial based on the following YouTube video title, description, and transcript.
+
+YouTube Video Title: ${meta.title}
+YouTube URL: ${sourceUrl}
+
+Description:
+${meta.description}
+
+Transcript:
+${meta.transcript || "[No transcript available]"}
+`;
+    } catch (err) {
+      logger.error("Failed to extract YouTube transcript, falling back to basic prompt", err);
+      const title = sourceUrl.includes("watch?v=") 
+        ? `Guide to Youtube content: ${sourceUrl.split("watch?v=")[1].substring(0, 6)}`
+        : "YouTube Video Resource";
+      userPrompt = getYoutubePrompt(title, sourceUrl);
+    }
   } else if (sourceType === "website") {
     // Fetch HTML metadata
     const meta = await fetchWebsiteMetadata(sourceUrl);
@@ -113,12 +130,15 @@ function generateFallbackTutorial(
       description: "Step-by-step developer tutorial generated from YouTube reference.",
       estimatedTime: 12,
       difficulty: "Intermediate",
+      domain: "github.com",
+      urlPattern: "https://github.com/*",
       steps: [
         {
           title: "Install Dependencies",
           instruction: "First, make sure to clone the repository and run `npm install` inside your terminal directory to synchronize configurations.",
           actionType: "code_highlight",
           selector: "pre code",
+          url: "",
           metadata: {}
         },
         {
@@ -126,6 +146,7 @@ function generateFallbackTutorial(
           instruction: "Create a copy of `.env.example` named `.env.local` and configure your API keys.",
           actionType: "input",
           selector: "input[name='env-file']",
+          url: "",
           metadata: {}
         },
         {
@@ -133,6 +154,7 @@ function generateFallbackTutorial(
           instruction: "Run the build task command `npm run dev` to launch the local web interface.",
           actionType: "click",
           selector: "button#dev-server",
+          url: "",
           metadata: {}
         },
         {
@@ -140,6 +162,7 @@ function generateFallbackTutorial(
           instruction: "Open your web browser and navigate to `http://localhost:3000` to inspect layout rendering.",
           actionType: "navigate",
           selector: "",
+          url: "",
           metadata: {}
         }
       ]
@@ -150,12 +173,15 @@ function generateFallbackTutorial(
       description: "Quick setup guide compiled dynamically from documentation links.",
       estimatedTime: 8,
       difficulty: "Beginner",
+      domain: "example.com",
+      urlPattern: "https://example.com/*",
       steps: [
         {
           title: "Review Getting Started guidelines",
           instruction: "Read the intro paragraph to align on prerequisite frameworks.",
           actionType: "navigate",
           selector: "",
+          url: "",
           metadata: {}
         },
         {
@@ -163,6 +189,7 @@ function generateFallbackTutorial(
           instruction: "Click on the SDK configuration side tab to select the target SDK library.",
           actionType: "click",
           selector: "#sdk-tab",
+          url: "",
           metadata: {}
         },
         {
@@ -170,6 +197,7 @@ function generateFallbackTutorial(
           instruction: "Input your public project key inside the designated configuration text area.",
           actionType: "input",
           selector: "input#public-key",
+          url: "",
           metadata: {}
         }
       ]
@@ -180,12 +208,15 @@ function generateFallbackTutorial(
       description: recordingDesc || "Dynamic step walkthrough derived from recording upload.",
       estimatedTime: 6,
       difficulty: "Beginner",
+      domain: "localhost",
+      urlPattern: "http://localhost:3000/*",
       steps: [
         {
           title: "Open Interface Dashboard",
           instruction: "Access the main workspace dashboard and click the settings icon.",
           actionType: "click",
           selector: "button#settings-btn",
+          url: "",
           metadata: {}
         },
         {
@@ -193,6 +224,7 @@ function generateFallbackTutorial(
           instruction: "Update the user credentials and save the settings forms.",
           actionType: "input",
           selector: "input#profile-username",
+          url: "",
           metadata: {}
         }
       ]
